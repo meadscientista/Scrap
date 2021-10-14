@@ -6,3 +6,4 @@ zipp
 numpy
 pandas
 selenium
+webdriver-manager
