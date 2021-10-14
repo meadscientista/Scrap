@@ -5,3 +5,4 @@ bs4==0.0.1
 zipp==3.6.0
 numpy==1.19.5
 pandas==1.1.5
+selenium
