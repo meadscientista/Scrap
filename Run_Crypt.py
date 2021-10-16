@@ -95,6 +95,7 @@ while True:
   if new_height == last_height:
       break
   last_height = new_height
+  print(last_height)
 page1 = driver.execute_script('return document.body.innerHTML')
 soup1 = BeautifulSoup(''.join(page1), 'html.parser')
 
@@ -180,6 +181,7 @@ while True:
   if new_height == last_height:
       break
   last_height = new_height
+  print(last_height)
 page2 = driver.execute_script('return document.body.innerHTML')
 soup2 = BeautifulSoup(''.join(page2), 'html.parser')
 
@@ -236,6 +238,7 @@ while True:
   if new_height == last_height:
       break
   last_height = new_height
+  print(last_height)
 page3 = driver.execute_script('return document.body.innerHTML')
 soup3 = BeautifulSoup(''.join(page3), 'html.parser')
 
