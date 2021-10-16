@@ -12,7 +12,7 @@ Original file is located at
 # Commented out IPython magic to ensure Python compatibility.
 
 import sys 
-
+import os
 from selenium import webdriver
 import bs4
 import requests
