@@ -141,7 +141,7 @@ chrome_options.add_argument('--disable-dev-shm-usage')
 url = "https://app.sushi.com/farm"
 SCROLL_PAUSE_TIME = 3
 #driver = webdriver.Chrome('chromedriver',chrome_options=chrome_options)
-driver = webdriver.Chrome(executable_path=os.getenv('CHROME_EXECUTABLE_PATH'), options=option)
+driver = webdriver.Chrome(executable_path=os.getenv('CHROME_EXECUTABLE_PATH'), options=chrome_options)
 driver.get(url)
 
 '''
