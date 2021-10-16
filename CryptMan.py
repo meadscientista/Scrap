@@ -3,7 +3,7 @@ import bs4
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
-from google.colab import files
+#from google.colab import files
 from zipfile import ZipFile
 import warnings
 import re
