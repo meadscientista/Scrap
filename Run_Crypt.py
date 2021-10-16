@@ -209,7 +209,8 @@ for i in main_list_sushi:
   record.append(i.find( "div" , class_=apr_div ).contents[0])
   main_dict.append(record) 
 df = pd.DataFrame(main_dict, columns = ['Pool', 'TVL','APR'])
-df.to_csv('SushiFarm.csv')
+#df.to_csv('SushiFarm.csv')
+print('---------Ada------------')
 print(df)
 #files.download('SushiFarm.csv')
 
@@ -273,6 +274,7 @@ for i in main_list_adm:
   main_dict.append(record) 
 df = pd.DataFrame(main_dict, columns = ['Pool', 'TVL','APR'])
 
-df.to_excel('Adament.xlsx')
+#df.to_excel('Adament.xlsx')
+print('---------Ada------------')
 print(df)
 #files.download('Adament.xlsx')
