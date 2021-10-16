@@ -61,7 +61,7 @@ option.binary_location = os.getenv('GOOGLE_CHROME_BIN')
 option.add_argument("--headless")
 option.add_argument('--disable-gpu')
 option.add_argument('--no-sandbox')
-browser = webdriver.Chrome(executable_path=os.getenv('CHROME_EXECUTABLE_PATH'), options=option)
+browser = webdriver.Chrome(executable_path=os.getenv('CHROME_EXECUTABLE_PATH'), options=chrome_options)
 '''
 
 #Selenium
@@ -73,7 +73,7 @@ chrome_options.add_argument('--disable-dev-shm-usage')
 chrome_options.add_argument('--disable-gpu')
 
 #driver = webdriver.Chrome('chromedriver',chrome_options=chrome_options)
-driver = webdriver.Chrome(executable_path=os.getenv('CHROME_EXECUTABLE_PATH'), options=option)
+driver = webdriver.Chrome(executable_path=os.getenv('CHROME_EXECUTABLE_PATH'), options=chrome_options)
 
 
 
@@ -216,7 +216,7 @@ print(df)
 url = "https://adamant.finance/"
 
 #driver = webdriver.Chrome('chromedriver',chrome_options=chrome_options)
-driver = webdriver.Chrome(executable_path=os.getenv('CHROME_EXECUTABLE_PATH'), options=option)
+driver = webdriver.Chrome(executable_path=os.getenv('CHROME_EXECUTABLE_PATH'), options=chrome_options)
 driver.get(url)
 SCROLL_PAUSE_TIME = 3
 
