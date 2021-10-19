@@ -40,12 +40,27 @@ import time
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
 
+'''
 chrome_options = webdriver.ChromeOptions() 
 chrome_options.add_argument('--headless')
 chrome_options.add_argument('--no-sandbox')
 chrome_options.add_argument('--disable-dev-shm-usage')
+'''
+
+#### Heroku Driver
+
+chrome_options= webdriver.ChromeOptions()
+chrome_options.binary_location = os.getenv('GOOGLE_CHROME_BIN')
+chrome_options.add_argument('--headless')
+chrome_options.add_argument('--no-sandbox')
+chrome_options.add_argument('--disable-dev-shm-usage')
+chrome_options.add_argument('--disable-gpu')
+
+#driver = webdriver.Chrome('chromedriver',chrome_options=chrome_options)
+driver = webdriver.Chrome(executable_path=os.getenv('CHROME_EXECUTABLE_PATH'), options=chrome_options)
 
 """##### Declarations"""
+
 
 global nerve_fail
 global sushi_fail
@@ -86,11 +101,15 @@ def initialize():
     delete_cache()
   except:
     pass
-  chrome_options = webdriver.ChromeOptions() 
+  chrome_options= webdriver.ChromeOptions()
+  chrome_options.binary_location = os.getenv('GOOGLE_CHROME_BIN')
   chrome_options.add_argument('--headless')
   chrome_options.add_argument('--no-sandbox')
   chrome_options.add_argument('--disable-dev-shm-usage')
-  driver = webdriver.Chrome('chromedriver',chrome_options=chrome_options)
+  chrome_options.add_argument('--disable-gpu')
+  #driver = webdriver.Chrome('chromedriver',chrome_options=chrome_options)
+  driver = webdriver.Chrome(executable_path=os.getenv('CHROME_EXECUTABLE_PATH'), options=chrome_options)
+
 
 
 
@@ -105,7 +124,8 @@ def nerve_fi():
   try:
     print("Running")
     SCROLL_PAUSE_TIME = 3
-    driver = webdriver.Chrome('chromedriver',chrome_options=chrome_options)
+    #driver = webdriver.Chrome('chromedriver',chrome_options=chrome_options)
+    driver = webdriver.Chrome(executable_path=os.getenv('CHROME_EXECUTABLE_PATH'), options=chrome_options)
     driver.get(url)
     time.sleep(10)
     
@@ -178,7 +198,8 @@ def sushi_farm():
    
   try:
     print('Running Sushi')
-    driver = webdriver.Chrome('chromedriver',chrome_options=chrome_options)
+    #driver = webdriver.Chrome('chromedriver',chrome_options=chrome_options)
+    driver = webdriver.Chrome(executable_path=os.getenv('CHROME_EXECUTABLE_PATH'), options=chrome_options)
     driver.get(url)
 
     time.sleep(10)
@@ -247,7 +268,8 @@ def adamant():
   import time
   global adm_fail
   try:    
-    driver = webdriver.Chrome('chromedriver',chrome_options=chrome_options)
+    #driver = webdriver.Chrome('chromedriver',chrome_options=chrome_options)
+    driver = webdriver.Chrome(executable_path=os.getenv('CHROME_EXECUTABLE_PATH'), options=chrome_options)
     driver.get(url)
     SCROLL_PAUSE_TIME = 3
 
