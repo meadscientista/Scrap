@@ -346,7 +346,7 @@ def All_Crypto():
     print('Nerve Try 1')
     op=nerve_fi()
     Nerve_File='Nerve Fi '+date_time_now+'.xlsx'
-    op.to_excel(Nerve_File)
+    op.to_csv(Nerve_File)
     Nerve_df=op.assign(source='Nerve.fi')
     All_websites=All_websites.append(Nerve_df)
     print(Nerve_df)
@@ -359,7 +359,7 @@ def All_Crypto():
         print('Nerve Try 2')
         op=nerve_fi()
         Nerve_File='Nerve Fi '+date_time_now+'.xlsx'
-        op.to_excel(Nerve_File)
+        #op.to_excel(Nerve_File)
         Nerve_df=op.assign(source='Nerve.fi')
         All_websites=All_websites.append(Nerve_df)
       except:
@@ -370,11 +370,12 @@ def All_Crypto():
     op2=sushi_farm()
     print('Extracted Sushi ')
     Sushi_File='Sushi Farm '+date_time_now+'.xlsx'
-    op2.to_excel(Sushi_File)
+    op2.to_csv(Sushi_File)
     Sushi_df=op2.assign(source='Sushi')
     print('Appended Sushi ')
     All_websites=All_websites.append(Sushi_df)
     print(Sushi_df)
+    print(len(Sushi_df),'Records in Adamant')
 
   except:
     try:
@@ -384,7 +385,7 @@ def All_Crypto():
         print('Sushi Try 2')
         op2=sushi_farm()
         Sushi_File='Sushi Farm '+date_time_now+'.xlsx'
-        op2.to_excel(Sushi_File)
+        #op2.to_excel(Sushi_File)
         Sushi_df=op2.assign(source='Sushi Farm')
         All_websites=All_websites.append(Sushi_df)
         print(Sushi_df)
@@ -396,11 +397,12 @@ def All_Crypto():
   try:
     print('Adamant Try 1')
     op3=adamant()
-    Adm_File='Adamant '+date_time_now+'.xlsx'
-    op3.to_excel(Adm_File)
+    Adm_File='Adamant '+date_time_now+'.csv'
+    op3.to_csv(Adm_File)
     Adamant_df=op3.assign(source='Adamant')
     All_websites=All_websites.append(Adamant_df)
     print(Adamant_df)
+    print(len(Adamant_df),'Records in Adamant')
   except:
     try:
       initialize()
@@ -409,13 +411,15 @@ def All_Crypto():
         print('Adamant Try 2')
         op3=adamant()
         Adm_File='Adamant '+date_time_now+'.xlsx'
-        op3.to_excel(Adm_File)
+        #op3.to_excel(Adm_File)
         Adamant_df=op3.assign(source='Adamant')
         All_websites=All_websites.append(Adamant_df)
         print(Adamant_df)
+        print(len(Adamant_df),'Records in Adamant')
+        
       except:
         print('Failed to Extract Adamant')
-  print('Extrcated main ',len(All_websites))
+  print('Extracted main ',len(All_websites))
 
   return All_websites
 
