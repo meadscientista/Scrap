@@ -315,7 +315,7 @@ def adamant():
       main_dict.append(record) 
     df = pd.DataFrame(main_dict, columns = ['Pool', 'TVL','APR'])
 
-    df.to_excel('Adament.xlsx')
+    df.to_csv('Adament.csv')
     return df
     print("Extracted in ",adm_fail+1,"attempts")
     
@@ -421,9 +421,9 @@ def All_Crypto():
 """### Execution"""
 
 All_Websites_df=All_Crypto()
-Full_Data='Full Crypto '+date_time_now+'.xlsx'
+Full_Data='Full Crypto '+date_time_now+'.csv'
 
-All_Websites_df.to_excel(Full_Data)
+All_Websites_df.to_csv(Full_Data)
 #All_Websites_df
 
 #files.download(Full_Data)
