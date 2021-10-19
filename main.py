@@ -415,7 +415,8 @@ def All_Crypto():
         print(Adamant_df)
       except:
         print('Failed to Extract Adamant')
-  
+  print('Extrcated main ',len(All_websites))
+
   return All_websites
 
 """### Execution"""
@@ -460,5 +461,6 @@ def upload_file(file_from, file_to):
     dbx = dropbox.Dropbox(TOKEN)
     f = open(file_from, 'rb')
     dbx.files_upload(f.read(), file_to)
+    print('Uploaded',file_to)
 upload_file(file_from,file_to)
 
