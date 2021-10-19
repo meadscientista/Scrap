@@ -442,15 +442,13 @@ TOKEN = "qFtokCQ7cjUAAAAAAAAAAf2Ny3MuWPF6tq0zD0RHzSrjkuI1a46bOpt1KIOMA0Oz"
 
 # Establish connection
 def connect_to_dropbox():
-	
-	try:
-		dbx = dropbox.Dropbox(TOKEN)
-		print('Connected to Dropbox successfully')
-	
-	except Exception as e:
-		print(str(e))
-	
-	return dbx
+  try:
+    dbx = dropbox.Dropbox(TOKEN)
+    print('Connected to Dropbox successfully')
+    return dbx
+  except Exception as e:
+    print(str(e))
+  #return dbx
 
 dbx = connect_to_dropbox()
 import dropbox
@@ -461,6 +459,4 @@ def upload_file(file_from, file_to):
     dbx = dropbox.Dropbox(TOKEN)
     f = open(file_from, 'rb')
     dbx.files_upload(f.read(), file_to)
-    print('Uploaded',file_to)
 upload_file(file_from,file_to)
-
