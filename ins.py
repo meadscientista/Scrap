@@ -9,9 +9,7 @@ import praw
 import pandas as pd
 import urllib.request
 import random
-from PIL import Image
-from PIL import ImageFont
-from PIL import ImageDraw
+
 from datetime import datetime
 from instauto.api.client import ApiClient
 import os
