@@ -73,7 +73,7 @@ print('6')
 #driver.maximize_window()
 
 try:
-    driver.switch_to.window(driver.window_handles[0])
+    driver.switch_to.window(driver.window_handles[1])
     print('___________________________________________________________________')
     print('Switch 1___________________________________________________________________')
     page1 = driver.execute_script('return document.body.innerHTML')
