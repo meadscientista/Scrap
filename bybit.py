@@ -79,12 +79,6 @@ bybit_fail=0
 pancake_fail=0
 traderjoe_fail=0
 
-global nerve_fail
-global sushi_fail
-global adm_fail
-nerve_fail=0
-sushi_fail=0
-adm_fail=0
 date_time_now=str(datetime.now())[:16]
 
 
