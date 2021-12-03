@@ -62,16 +62,17 @@ from selenium import webdriver
 print('1')
 EXTENSION_PATH = 'mask.crx'
 print('2')
-#opt = webdriver.ChromeOptions()
+opt = webdriver.ChromeOptions()
+
 print('3')
-#opt.add_extension(EXTENSION_PATH)
+opt.add_extension(EXTENSION_PATH)
 print('4')
-#driver = webdriver.Chrome(chrome_options=opt)
+driver = webdriver.Chrome(chrome_options=opt)
 print('5')
 time.sleep(10)
 print('6')
 #driver.maximize_window()
-'''
+
 try:
     driver.switch_to.window(driver.window_handles[-1])
     print('___________________________________________________________________')
@@ -103,15 +104,17 @@ try:
     
 except:
     pass
-'''
-print('Window Switched')
-length=len(driver.window_handles)
-titles=[]
-for i in range(length):
-    driver.switch_to.window(driver.window_handles[i])
-    titles.append(driver.title)
-    print(title)
-
+try:
+    
+    print('Window Switched')
+    length=len(driver.window_handles)
+    titles=[]
+    for i in range(length):
+        driver.switch_to.window(driver.window_handles[i])
+        titles.append(driver.title)
+        print(title)
+except:
+    pass
 driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
 time.sleep(2)
 driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
