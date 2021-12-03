@@ -35,7 +35,7 @@ from selenium.webdriver.common.by import By
 import time
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
-
+from selenium import webdriver
 '''
 chrome_options = webdriver.ChromeOptions() 
 chrome_options.add_argument('--headless')
@@ -44,7 +44,7 @@ chrome_options.add_argument('--disable-dev-shm-usage')
 '''
 
 #### Heroku Driver
-
+'''
 chrome_options= webdriver.ChromeOptions()
 chrome_options.binary_location = os.getenv('GOOGLE_CHROME_BIN')
 chrome_options.add_argument('--headless')
@@ -56,14 +56,14 @@ chrome_options.add_argument(EXTENSION_PATH)
 
 #driver = webdriver.Chrome('chromedriver',chrome_options=chrome_options)
 driver = webdriver.Chrome(executable_path=os.getenv('CHROME_EXECUTABLE_PATH'), options=chrome_options)
+'''
 
 
-from selenium import webdriver
 print('1')
 EXTENSION_PATH = 'mask.crx'
 print('2')
 opt = webdriver.ChromeOptions()
-opt= webdriver.ChromeOptions()
+
 opt.binary_location = os.getenv('GOOGLE_CHROME_BIN')
 opt.add_argument('--headless')
 opt.add_argument('--no-sandbox')
