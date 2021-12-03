@@ -70,7 +70,7 @@ opt.add_argument('--no-sandbox')
 opt.add_argument('--disable-dev-shm-usage')
 opt.add_argument('--disable-gpu')
 EXTENSION_PATH = 'mask.crx'
-opt.add_argument(EXTENSION_PATH)
+#opt.add_argument(EXTENSION_PATH)
 
 
 
