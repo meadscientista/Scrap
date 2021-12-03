@@ -57,6 +57,27 @@ driver = webdriver.Chrome(executable_path=os.getenv('CHROME_EXECUTABLE_PATH'), o
 
 """##### Declarations"""
 
+global nerve_fail
+global sushi_fail
+global adm_fail
+global mirror_fail
+global convex_fail
+global raydium_fail
+global balancer_fail
+global bybit_fail
+global pancake_fail
+global traderjoe_fail
+
+nerve_fail=0
+sushi_fail=0
+adm_fail=0
+mirror_fail=0
+convex_fail=0
+raydium_fail=0
+balancer_fail=0
+bybit_fail=0
+pancake_fail=0
+traderjoe_fail=0
 
 global nerve_fail
 global sushi_fail
