@@ -72,9 +72,18 @@ time.sleep(10)
 print('6')
 #driver.maximize_window()
 
-driver.switch_to.window(driver.window_handles[0])
-driver.switch_to.window(driver.window_handles[0])
-driver.switch_to.window(driver.window_handles[1])
+try:
+    driver.switch_to.window(driver.window_handles[0])
+except:
+    pass
+try:
+    driver.switch_to.window(driver.window_handles[0])
+except:
+    pass
+try:
+    driver.switch_to.window(driver.window_handles[1])
+except:
+    pass
 print('Window Switched')
 driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
 time.sleep(2)
