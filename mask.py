@@ -65,7 +65,7 @@ print('2')
 opt = webdriver.ChromeOptions()
 
 opt.binary_location = os.getenv('GOOGLE_CHROME_BIN')
-opt.add_argument('--headless')
+#opt.add_argument('--headless')
 opt.add_argument('--no-sandbox')
 opt.add_argument('--disable-dev-shm-usage')
 opt.add_argument('--disable-gpu')
