@@ -74,14 +74,33 @@ print('6')
 
 try:
     driver.switch_to.window(driver.window_handles[0])
+    print('___________________________________________________________________')
+    print('Switch 1___________________________________________________________________')
+    page1 = driver.execute_script('return document.body.innerHTML')
+    soup1 = BeautifulSoup(''.join(page1), 'html.parser')
+    print(soup1.prettify())
+
 except:
     pass
 try:
     driver.switch_to.window(driver.window_handles[0])
+    print('___________________________________________________________________')
+    print('Switch 2___________________________________________________________________')
+    page1 = driver.execute_script('return document.body.innerHTML')
+    soup1 = BeautifulSoup(''.join(page1), 'html.parser')
+    print(soup1.prettify())    
 except:
     pass
 try:
     driver.switch_to.window(driver.window_handles[1])
+    print('___________________________________________________________________')
+    print('Switch 3___________________________________________________________________')
+    page1 = driver.execute_script('return document.body.innerHTML')
+    soup1 = BeautifulSoup(''.join(page1), 'html.parser')
+    print(soup1.prettify())    
+
+    print('___________________________________________________________________')
+    
 except:
     pass
 print('Window Switched')
