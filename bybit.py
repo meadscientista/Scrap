@@ -125,7 +125,7 @@ def initialize():
 
 def bybit():
   print("Started bybit")
-  url="https://www.bybit.com/trade/usdt/BITUSDT"
+  url="https://quickswap.exchange/#/quick"
   import time
   global bybit_fail
   chrome_options.add_argument("--start-maximized")
@@ -158,6 +158,7 @@ def bybit():
     page1 = driver.execute_script('return document.body.innerHTML')
     soup1 = BeautifulSoup(''.join(page1), 'html.parser')
     web_data=soup1
+    print(web_data.prettify())
 
     main_list=web_data.find_all( "div" , class_='pnr__item pnr__item-column funding-rate help-cursor')
     main_dict=[]
