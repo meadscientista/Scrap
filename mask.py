@@ -63,11 +63,23 @@ print('1')
 EXTENSION_PATH = 'mask.crx'
 print('2')
 opt = webdriver.ChromeOptions()
+opt= webdriver.ChromeOptions()
+opt.binary_location = os.getenv('GOOGLE_CHROME_BIN')
+opt.add_argument('--headless')
+opt.add_argument('--no-sandbox')
+opt.add_argument('--disable-dev-shm-usage')
+opt.add_argument('--disable-gpu')
+EXTENSION_PATH = 'mask.crx'
+opt.add_argument(EXTENSION_PATH)
+
+
 
 print('3')
 opt.add_extension(EXTENSION_PATH)
 print('4')
-driver = webdriver.Chrome(chrome_options=opt)
+#driver = webdriver.Chrome(chrome_options=opt)
+driver = webdriver.Chrome(executable_path=os.getenv('CHROME_EXECUTABLE_PATH'), options=opt)
+
 print('5')
 time.sleep(10)
 print('6')
