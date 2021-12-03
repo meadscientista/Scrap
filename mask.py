@@ -71,7 +71,7 @@ print('5')
 time.sleep(10)
 print('6')
 #driver.maximize_window()
-
+'''
 try:
     driver.switch_to.window(driver.window_handles[-1])
     print('___________________________________________________________________')
@@ -103,6 +103,7 @@ try:
     
 except:
     pass
+'''
 print('Window Switched')
 driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
 time.sleep(2)
