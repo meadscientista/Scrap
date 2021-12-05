@@ -606,10 +606,11 @@ def convex():
 
     #element = driver.find_element_by_css_selector(".MuiButtonBase-root.MuiButton-root.MuiButton-outlined.show-all-pools-button.MuiButton-outlinedSizeLarge.MuiButton-sizeLarge")
     #WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.CSS_SELECTOR, ".MuiButtonBase-root.MuiButton-root.MuiButton-outlined.show-all-pools-button.MuiButton-outlinedSizeLarge.MuiButton-sizeLarge"))).click()
-
+    
     element = driver.find_element_by_xpath("//button[@class='MuiButtonBase-root MuiButton-root MuiButton-outlined show-all-pools-button   MuiButton-outlinedSizeLarge MuiButton-sizeLarge']")
 
     element.click()
+    print('Clicked')
     time.sleep(SCROLL_PAUSE_TIME)
     #optable = str(soup.find( "div" , class_='PaginatedTable__table-full___35BKu' )) 
     #last_height = driver.execute_script("return document.body.scrollHeight")
@@ -635,6 +636,7 @@ def convex():
     page1 = driver.execute_script('return document.body.innerHTML')
     soup1 = BeautifulSoup(''.join(page1), 'html.parser')
     web_data=soup1
+    print('Soup Loaded')
     main_list=web_data.find_all("div",class_= "jsx-2417581814 container secondary not-always-expanded has-no-nested-action-box ")
     main_dict=[]
     import re
