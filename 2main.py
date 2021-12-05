@@ -364,7 +364,8 @@ def All_Crypto():
         All_websites=All_websites.append(Nerve_df)
       except:
         print('Failed to Extract Nerve.Fi')
-
+  
+  '''
   try:
     print('Sushi Try 1')
     op2=sushi_farm()
@@ -419,6 +420,8 @@ def All_Crypto():
         
       except:
         print('Failed to Extract Adamant')
+        
+  '''
   print('Extracted main ',len(All_websites))
 
   return All_websites
@@ -458,7 +461,7 @@ dbx = connect_to_dropbox()
 import dropbox
 
 file_from = Full_Data  
-file_to = '/'+Full_Data   
+file_to = '/Crypto Pool Files/'+Full_Data   
 def upload_file(file_from, file_to):
     dbx = dropbox.Dropbox(TOKEN)
     f = open(file_from, 'rb')
