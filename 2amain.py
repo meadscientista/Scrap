@@ -1128,7 +1128,7 @@ def pancake():
     chrome_options.add_argument('--disable-dev-shm-usage')
     chrome_options.add_argument('--start maximised')  
     driver=webdriver.Chrome(executable_path=os.getenv('CHROME_EXECUTABLE_PATH'), options=chrome_options)
-
+    print('In')
     driver.maximize_window()
     SCROLL_PAUSE_TIME = 4
     driver.set_window_size(2048, 1200)
@@ -1153,9 +1153,11 @@ def pancake():
     while True:
       time.sleep(SCROLL_PAUSE_TIME)
       driver.execute_script("window.scrollTo(0, document.body.scrollHeight-1000);")
+      print('a')
       #driver.execute_script("scrollBy(0,250);")
       time.sleep(SCROLL_PAUSE_TIME)
       driver.execute_script("window.scrollTo(0, document.body.scrollHeight-600);")
+      print('b')
         # Wait to load page
       #time.sleep(SCROLL_PAUSE_TIME)
       new_height = driver.execute_script("return document.body.scrollHeight")
@@ -1173,6 +1175,9 @@ def pancake():
 
     page1 = driver.execute_script('return document.body.innerHTML')
     soup1 = BeautifulSoup(''.join(page1), 'html.parser') 
+    print('Web Extracted')
+    with open("PancakeSoup.html", "w") as text_file:
+        text_file.write(soup1)
 
     web_data=soup1
     main_list=web_data.find_all("tr",class_= "sc-feWZte jehVgy")
@@ -1211,6 +1216,8 @@ def pancake():
     file_from = opname  
     file_to = '/'+opname
     upload_file(file_from,file_to)
+    
+    upload_file('PancakeSoup.html','/PancakeSoup.html')
         
     
     #print(soup1)
