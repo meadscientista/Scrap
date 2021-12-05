@@ -561,6 +561,7 @@ def mirror():
 
 def convex():
   print("Started Convex")
+  opname='Convex'+str(date_time_now)+'.csv'
   url="https://www.convexfinance.com/stake"
   import time
   global convex_fail
@@ -671,8 +672,11 @@ def convex():
     df = pd.DataFrame(main_dict, columns = ['Pool Name', 'Vapr','CVR Boost','TVL'])
     #print("Extracted in ",nerve_fail+1,"attempts")
     #print("Extracted ",len(df)," records")
-    df.to_csv('Convex.csv')
-
+    df.to_csv(opname)
+    file_from = opname  
+    file_to = '/'+opname
+    upload_file(file_from,file_to)
+    
     return df
     print("Extracted in ",convex_fail+1,"attempts")
     
@@ -698,6 +702,7 @@ def convex():
 
 def raydium():
   print("Started Raydium")
+  opname='raydium'+str(date_time_now)+'.csv'
   url="https://raydium.io/farms/"
   import time
   global raydium_fail
@@ -792,7 +797,11 @@ def raydium():
     df = pd.DataFrame(main_dict, columns = ['Pool Name','APR','TVL'])
     #print("Extracted in ",nerve_fail+1,"attempts")
     #print("Extracted ",len(df)," records")
-    df.to_csv('Raydium.csv')
+    df.to_csv(opname)
+    file_from = opname  
+    file_to = '/'+opname
+    upload_file(file_from,file_to)
+    
     return df
     print("Extracted in ",raydium_fail+1,"attempts")
     
@@ -818,6 +827,7 @@ def raydium():
 
 def balancer():
   print("Started Balancer")
+  opname='balancer'+str(date_time_now)+'.csv'
   url="https://polygon.balancer.fi/#/"
   import time
   global balancer_fail
@@ -924,8 +934,11 @@ def balancer():
     df = pd.DataFrame(main_dict, columns = ['Composition','Pool Value','APR'])
     #print("Extracted in ",nerve_fail+1,"attempts")
     #print("Extracted ",len(df)," records")
-    df.to_csv('Balancer.csv')
-
+    df.to_csv(opname)
+    file_from = opname  
+    file_to = '/'+opname
+    upload_file(file_from,file_to)
+    
 
 
     return df
@@ -953,6 +966,7 @@ def balancer():
 
 def ubeswap():
   print("Started Ubeswap")
+  opname='ubeswap'+str(date_time_now)+'.csv'
   url="https://app.ubeswap.org/#/farm"
   import time
   global ubeswap_fail
@@ -998,8 +1012,11 @@ def ubeswap():
     df = pd.DataFrame(main_dict, columns = ['Pool', 'TVL','APR'])
     #print("Extracted in ",nerve_fail+1,"attempts")
     print("Extracted ",len(df)," records")
-    df.to_csv('Ubeswap.csv')
-
+    df.to_csv(opname)
+    file_from = opname  
+    file_to = '/'+opname
+    upload_file(file_from,file_to)
+    
 
     return df
     print("Extracted in ",ubeswap_fail+1,"attempts")
@@ -1026,6 +1043,7 @@ def ubeswap():
 
 def bybit():
   print("Started bybit")
+  opname='bybit'+str(date_time_now)+'.csv'
   url="https://www.bybit.com/trade/usdt/BITUSDT"
   import time
   global bybit_fail
@@ -1071,7 +1089,11 @@ def bybit():
     df = pd.DataFrame(main_dict, columns = ['unPredicted','predicted'])
     #print("Extracted in ",nerve_fail+1,"attempts")
     print("Extracted ",bybit_fail+1," records")
-    df.to_csv('bybit.csv')
+    df.to_csv(opname)
+    file_from = opname  
+    file_to = '/'+opname
+    upload_file(file_from,file_to)
+        
     #print(soup1)
     return df
     print("Extracted in ",bybit_fail+1,"attempts")
@@ -1095,6 +1117,7 @@ def bybit():
 
 def pancake():
   print("Started pancake")
+  opname='pancake'+str(date_time_now)+'.csv'
   url="https://pancakeswap.finance/farms"
   import time
   global pancake_fail
@@ -1105,11 +1128,11 @@ def pancake():
     chrome_options.add_argument('--disable-dev-shm-usage')
     chrome_options.add_argument('--start maximised')  
     driver=webdriver.Chrome(executable_path=os.getenv('CHROME_EXECUTABLE_PATH'), options=chrome_options)
-    driver.set_window_size(2048, 1200)
-    driver.maximize_window()
-    SCROLL_PAUSE_TIME = 4
 
     driver.maximize_window()
+    SCROLL_PAUSE_TIME = 4
+    driver.set_window_size(2048, 1200)
+
 
     WebDriverWait(driver, SCROLL_PAUSE_TIME)
     '''
@@ -1184,7 +1207,12 @@ def pancake():
     #print("Extracted ",len(df)," records")
 
     print("Extracted ",pancake_fail+1," records")
-    df.to_csv('pancake.csv')
+    df.to_csv(opname)
+    file_from = opname  
+    file_to = '/'+opname
+    upload_file(file_from,file_to)
+        
+    
     #print(soup1)
     return df
     print("Extracted in ",pancake_fail+1,"attempts")
@@ -1211,6 +1239,7 @@ def pancake():
 
 def traderjoe():
   print("Started TraderJoe")
+  opname='traderjoe'+str(date_time_now)+'.csv'
   url="https://traderjoexyz.com/#/farm"
   import time
   global traderjoe_fail
@@ -1262,7 +1291,11 @@ def traderjoe():
     df.to_csv('Trader Joe.csv')
 
     print("Extracted ",traderjoe_fail+1," records")
-    df.to_csv('traderjoe.csv')
+    df.to_csv(opname)
+    file_from = opname  
+    file_to = '/'+opname
+    upload_file(file_from,file_to)
+        
     #print(soup1)
     return df
     print("Extracted in ",traderjoe_fail+1,"attempts")
@@ -1289,6 +1322,7 @@ def traderjoe():
 
 def coingecko():
   print("Started Coingecko")
+  opname='coingecko'+str(date_time_now)+'.csv'
   url="https://www.coingecko.com/en/coins/bitdao#markets"
   import time
   global coingecko_fail
@@ -1341,8 +1375,11 @@ def coingecko():
 
     df = pd.DataFrame(main_dict, columns = ['Exchange', 'Symbol','Price','Basis','Funding Rate'])
 
-    df.to_csv('CoinGecko.csv')
-
+    df.to_csv(opname)
+    file_from = opname  
+    file_to = '/'+opname
+    upload_file(file_from,file_to)
+    
     print("Extracted ",coingecko_fail+1," records")
 
 
@@ -1374,6 +1411,7 @@ def sushi_nokashi_farm():
   SCROLL_PAUSE_TIME = 3
   global sushi_fail
   print('Started Sushi')
+  opname='sushi_no_kashi_farm'+str(date_time_now)+'.csv'
    
   try:
     print('Running Sushi')
@@ -1424,7 +1462,10 @@ def sushi_nokashi_farm():
       #print(record)
     df = pd.DataFrame(main_dict, columns = ['Pool', 'TVL','APR','Farm Name'])
     df=df[df['Farm Name']!='Kashi Farm']
-    df.to_csv('SushiFarm.csv')
+    df.to_csv(opname)
+    file_from = opname  
+    file_to = '/'+opname
+    upload_file(file_from,file_to)    
     print("Extracted in ",sushi_fail+1,"attempts")
     print("Extracted ",len(df)," records")
     return df
@@ -1447,6 +1488,7 @@ def sushi_nokashi_farm():
 
 def pangolin():
   print("Started Pangolin")
+  opname='pangolin'+str(date_time_now)+'.csv'
   url="https://app.pangolin.exchange/#"
   import time
   global pangolin_fail
@@ -1534,8 +1576,11 @@ def pangolin():
     df = pd.DataFrame(main_dict, columns = ['Pool','Total Staked','Total APR','Pool Weight'])
     #print("Extracted in ",nerve_fail+1,"attempts")
     #print("Extracted ",len(df)," records")
-    df.to_csv('Pangolin.csv')
-
+    df.to_csv(opname)
+    file_from = opname  
+    file_to = '/'+opname
+    upload_file(file_from,file_to)
+    
 
     return df
     print("Extracted in ",pangolin_fail+1,"attempts")
@@ -1562,6 +1607,7 @@ def pangolin():
 
 def alpaca():
   print("Started alpaca")
+  opname='alpaca'+str(date_time_now)+'.csv'
   url="https://app.alpacafinance.org/farm"
   #chrome_options = webdriver.ChromeOptions() 
   main_dict=[]
@@ -1620,8 +1666,11 @@ def alpaca():
 
     df = pd.DataFrame(main_dict, columns = ['Pool Name', 'Liquidity','APY','APY_Cross','Borrowing Interest'])
     df=df.drop_duplicates(subset=['Pool Name'])
-    df.to_csv('Alpaca.csv')
-  
+    df.to_csv(opname)
+    file_from = opname  
+    file_to = '/'+opname
+    upload_file(file_from,file_to)
+      
 
     return df
 
@@ -1651,7 +1700,7 @@ def All_Crypto():
   try:
     print('Mirror Try 1')
     Mirror_df=mirror()
-    print(Mirror_df)
+    #print(Mirror_df)
     test_op['mirror']=len(Mirror_df)
   except:
     try:
@@ -1660,14 +1709,14 @@ def All_Crypto():
       try:
         print('Mirror Try 2')
         Mirror_df=mirror()
-        print(Mirror_df)
+        #print(Mirror_df)
       except:
         print('Failed to Extract Mirror')    
   
   try:
     print('Convex Try 1')
     Convex_df=convex()
-    print(Convex_df)
+    #print(Convex_df)
     test_op['convex']=len(Convex_df)
   except:
     try:
@@ -1676,7 +1725,7 @@ def All_Crypto():
       try:
         print('Convex Try 2')
         Convex_df=convex()
-        print(Convex_df)
+        #print(Convex_df)
         test_op['convex']=len(Convex_df)
       except:
         print('Failed to Extract Convex')    
@@ -1684,7 +1733,7 @@ def All_Crypto():
   try:
     print('raydium Try 1')
     Raydium_df=raydium()
-    print(Raydium_df)
+    #print(Raydium_df)
     test_op['raydium']=len(Raydium_df)
   except:
     try:
@@ -1693,7 +1742,7 @@ def All_Crypto():
       try:
         print('raydium Try 2')
         Raydium_df=raydium()
-        print(Raydium_df)
+        #print(Raydium_df)
         test_op['raydium']=len(Raydium_df)
       except:
         print('Failed to Extract raydium')    
@@ -1701,7 +1750,7 @@ def All_Crypto():
   try:
     print('balancer Try 1')
     Balancer_df=balancer()
-    print(Balancer_df)
+    #print(Balancer_df)
     test_op['balancer']=len(Balancer_df)
   except:
     try:
@@ -1710,7 +1759,7 @@ def All_Crypto():
       try:
         print('balancer Try 2')
         Balancer_df=balancer()
-        print(Balancer_df)
+        #print(Balancer_df)
         test_op['balancer']=len(Balancer_df)
       except:
         print('Failed to Extract balancer')    
@@ -1718,7 +1767,7 @@ def All_Crypto():
   try:
     print('ubeswap Try 1')
     Ubeswap_df=ubeswap()
-    print(Ubeswap_df)
+    #print(Ubeswap_df)
     test_op['ubeswap']=len(Ubeswap_df)
   except:
     try:
@@ -1727,7 +1776,7 @@ def All_Crypto():
       try:
         print('ubeswap Try 2')
         Ubeswap_df=ubeswap()
-        print(Ubeswap_df)
+        #print(Ubeswap_df)
         test_op['ubeswap']=len(Ubeswap_df)
       except:
         print('Failed to Extract ubeswap')    
@@ -1735,7 +1784,7 @@ def All_Crypto():
   try:
     print('traderjoe Try 1')
     Traderjoe_df=traderjoe()
-    print(Traderjoe_df)
+    #print(Traderjoe_df)
     test_op['traderjoe']=len(Traderjoe_df)
   except:
     try:
@@ -1744,7 +1793,7 @@ def All_Crypto():
       try:
         print('traderjoe Try 2')
         Traderjoe_df=traderjoe()
-        print(Traderjoe_df)
+        #print(Traderjoe_df)
         test_op['traderjoe']=len(Traderjoe_df)        
         
       except:
@@ -1753,7 +1802,7 @@ def All_Crypto():
   try:
     print('pancake Try 1')
     Pancake_df=pancake()
-    print(Pancake_df)
+    #print(Pancake_df)
     test_op['pancake']=len(Pancake_df)
   except:
     try:
@@ -1762,7 +1811,7 @@ def All_Crypto():
       try:
         print('pancake Try 2')
         Pancake_df=pancake()
-        print(Pancake_df)
+        #print(Pancake_df)
         test_op['pancake']=len(Pancake_df)        
       except:
         print('Failed to Extract pancake')    
@@ -1770,7 +1819,7 @@ def All_Crypto():
   try:
     print('sushi_nokashi_farm Try 1')
     Sushi_nokashi_farm_df=sushi_nokashi_farm()
-    print(Sushi_nokashi_farm_df)
+    #print(Sushi_nokashi_farm_df)
     test_op['sushi_nokashi_farm']=len(Sushi_nokashi_farm_df)
   except:
     try:
@@ -1779,7 +1828,7 @@ def All_Crypto():
       try:
         print('sushi_nokashi_farm Try 2')
         Sushi_nokashi_farm_df=sushi_nokashi_farm()
-        print(Sushi_nokashi_farm_df)
+        #print(Sushi_nokashi_farm_df)
         test_op['sushi_nokashi_farm']=len(Sushi_nokashi_farm_df)        
       except:
         print('Failed to Extract sushi_nokashi_farm')    
@@ -1787,7 +1836,7 @@ def All_Crypto():
   try:
     print('coingecko Try 1')
     Coingecko_df=coingecko()
-    print(Coingecko_df)
+    #print(Coingecko_df)
     test_op['coingecko']=len(Coingecko_df)
   except:
     try:
@@ -1796,7 +1845,7 @@ def All_Crypto():
       try:
         print('coingecko Try 2')
         Coingecko_df=coingecko()
-        print(Coingecko_df)
+        #print(Coingecko_df)
         test_op['coingecko']=len(Coingecko_df)        
       except:
         print('Failed to Extract coingecko')    
@@ -1804,7 +1853,7 @@ def All_Crypto():
   try:
     print('pangolin Try 1')
     Pangolin_df=pangolin()
-    print(Pangolin_df)
+    #print(Pangolin_df)
     test_op['pangolin']=len(Pangolin_df)
   except:
     try:
@@ -1813,7 +1862,7 @@ def All_Crypto():
       try:
         print('pangolin Try 2')
         Pangolin_df=pangolin()
-        print(Pangolin_df)
+        #print(Pangolin_df)
         test_op['pangolin']=len(Pangolin_df)
         
       except:
@@ -1823,7 +1872,7 @@ def All_Crypto():
   try:
     print('alpaca Try 1')
     Alpaca_df=alpaca()
-    print(Alpaca_df)
+    #print(Alpaca_df)
     test_op['alpaca']=len(Alpaca_df)
   except:
     try:
@@ -1832,7 +1881,7 @@ def All_Crypto():
       try:
         print('alpaca Try 2')
         Alpaca_df=alpaca()
-        print(Alpaca_df)
+        #print(Alpaca_df)
         test_op['alpaca']=len(Alpaca_df)        
         
       except:
@@ -1843,7 +1892,7 @@ def All_Crypto():
 """### Execution"""
 
 All_Websites_df=All_Crypto()
-
+print(All_Websites_df)
 
 
 
