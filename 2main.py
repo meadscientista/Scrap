@@ -1616,83 +1616,8 @@ def alpaca():
 
 def All_Crypto():
   #All_websites = pd.DataFrame(columns = ['Pool', 'TVL','APR','source'])
-  test_op={'mirror':0}
-  
-  '''  
-  try:
-    print('Nerve Try 1')
-    op=nerve_fi()
-    Nerve_File='Nerve Fi '+date_time_now+'.xlsx'
-    op.to_excel(Nerve_File)
-    Nerve_df=op.assign(source='Nerve.fi')
-    All_websites=All_websites.append(Nerve_df)
-    print(Nerve_df)
-    
-  except:
-    try:
-      initialize()
-    except:
-      try:
-        print('Nerve Try 2')
-        op=nerve_fi()
-        Nerve_File='Nerve Fi '+date_time_now+'.xlsx'
-        op.to_excel(Nerve_File)
-        Nerve_df=op.assign(source='Nerve.fi')
-        All_websites=All_websites.append(Nerve_df)
-      except:
-        print('Failed to Extract Nerve.Fi')
+  test_op={'mirror':0,'convex':0,'raydium':0,'balancer':0,'ubeswap':0,'traderjoe':0,'pancake':0,'sushi_nokashi_farm':0,'coingecko':0,'pangolin':0,'alpaca':0}
 
-  try:
-    print('Sushi Try 1')
-    op2=sushi_farm()
-    print('Extracted Sushi ')
-    Sushi_File='Sushi Farm '+date_time_now+'.xlsx'
-    op2.to_excel(Sushi_File)
-    Sushi_df=op2.assign(source='Sushi')
-    print('Appended Sushi ')
-    All_websites=All_websites.append(Sushi_df)
-    print(Sushi_df)
-
-  except:
-    try:
-      initialize()
-    except:
-      try:
-        print('Sushi Try 2')
-        op2=sushi_farm()
-        Sushi_File='Sushi Farm '+date_time_now+'.xlsx'
-        op2.to_excel(Sushi_File)
-        Sushi_df=op2.assign(source='Sushi Farm')
-        All_websites=All_websites.append(Sushi_df)
-        print(Sushi_df)
-      except:
-        print('Failed to Extract Sushi Farm')
-  
-  
-  
-  try:
-    print('Adamant Try 1')
-    op3=adamant()
-    Adm_File='Adamant '+date_time_now+'.xlsx'
-    op3.to_excel(Adm_File)
-    Adamant_df=op3.assign(source='Adamant')
-    All_websites=All_websites.append(Adamant_df)
-    print(Adamant_df)
-  except:
-    try:
-      initialize()
-    except:
-      try:
-        print('Adamant Try 2')
-        op3=adamant()
-        Adm_File='Adamant '+date_time_now+'.xlsx'
-        op3.to_excel(Adm_File)
-        Adamant_df=op3.assign(source='Adamant')
-        All_websites=All_websites.append(Adamant_df)
-        print(Adamant_df)
-      except:
-        print('Failed to Extract Adamant')
-    '''
   try:
     print('Mirror Try 1')
     Mirror_df=mirror()
@@ -1709,8 +1634,180 @@ def All_Crypto():
       except:
         print('Failed to Extract Mirror')    
   
+  try:
+    print('Convex Try 1')
+    Convex_df=convex()
+    print(Convex_df)
+    test_op['convex']=len(Convex_df)
+  except:
+    try:
+      initialize()
+    except:
+      try:
+        print('Convex Try 2')
+        Convex_df=convex()
+        print(Convex_df)
+        test_op['convex']=len(Convex_df)
+      except:
+        print('Failed to Extract Convex')    
 
-  
+  try:
+    print('raydium Try 1')
+    Raydium_df=raydium()
+    print(Raydium_df)
+    test_op['raydium']=len(Raydium_df)
+  except:
+    try:
+      initialize()
+    except:
+      try:
+        print('raydium Try 2')
+        Raydium_df=raydium()
+        print(Raydium_df)
+        test_op['raydium']=len(Raydium_df)
+      except:
+        print('Failed to Extract raydium')    
+
+  try:
+    print('balancer Try 1')
+    Balancer_df=balancer()
+    print(Balancer_df)
+    test_op['balancer']=len(Balancer_df)
+  except:
+    try:
+      initialize()
+    except:
+      try:
+        print('balancer Try 2')
+        Balancer_df=balancer()
+        print(Balancer_df)
+        test_op['balancer']=len(Balancer_df)
+      except:
+        print('Failed to Extract balancer')    
+
+  try:
+    print('ubeswap Try 1')
+    Ubeswap_df=ubeswap()
+    print(Ubeswap_df)
+    test_op['ubeswap']=len(Ubeswap_df)
+  except:
+    try:
+      initialize()
+    except:
+      try:
+        print('ubeswap Try 2')
+        Ubeswap_df=ubeswap()
+        print(Ubeswap_df)
+        test_op['ubeswap']=len(Ubeswap_df)
+      except:
+        print('Failed to Extract ubeswap')    
+
+  try:
+    print('traderjoe Try 1')
+    Traderjoe_df=traderjoe()
+    print(Traderjoe_df)
+    test_op['traderjoe']=len(Traderjoe_df)
+  except:
+    try:
+      initialize()
+    except:
+      try:
+        print('traderjoe Try 2')
+        Traderjoe_df=traderjoe()
+        print(Traderjoe_df)
+        test_op['traderjoe']=len(Traderjoe_df)        
+        
+      except:
+        print('Failed to Extract traderjoe')    
+
+  try:
+    print('pancake Try 1')
+    Pancake_df=pancake()
+    print(Pancake_df)
+    test_op['pancake']=len(Pancake_df)
+  except:
+    try:
+      initialize()
+    except:
+      try:
+        print('pancake Try 2')
+        Pancake_df=pancake()
+        print(Pancake_df)
+        test_op['pancake']=len(Pancake_df)        
+      except:
+        print('Failed to Extract pancake')    
+
+  try:
+    print('sushi_nokashi_farm Try 1')
+    Sushi_nokashi_farm_df=sushi_nokashi_farm()
+    print(Sushi_nokashi_farm_df)
+    test_op['sushi_nokashi_farm']=len(Sushi_nokashi_farm_df)
+  except:
+    try:
+      initialize()
+    except:
+      try:
+        print('sushi_nokashi_farm Try 2')
+        Sushi_nokashi_farm_df=sushi_nokashi_farm()
+        print(Sushi_nokashi_farm_df)
+        test_op['sushi_nokashi_farm']=len(Sushi_nokashi_farm_df)        
+      except:
+        print('Failed to Extract sushi_nokashi_farm')    
+
+  try:
+    print('coingecko Try 1')
+    Coingecko_df=coingecko()
+    print(Coingecko_df)
+    test_op['coingecko']=len(Coingecko_df)
+  except:
+    try:
+      initialize()
+    except:
+      try:
+        print('coingecko Try 2')
+        Coingecko_df=coingecko()
+        print(Coingecko_df)
+        test_op['coingecko']=len(Coingecko_df)        
+      except:
+        print('Failed to Extract coingecko')    
+
+  try:
+    print('pangolin Try 1')
+    Pangolin_df=pangolin()
+    print(Pangolin_df)
+    test_op['pangolin']=len(Pangolin_df)
+  except:
+    try:
+      initialize()
+    except:
+      try:
+        print('pangolin Try 2')
+        Pangolin_df=pangolin()
+        print(Pangolin_df)
+        test_op['pangolin']=len(Pangolin_df)
+        
+      except:
+        print('Failed to Extract pangolin') 
+ 
+
+  try:
+    print('alpaca Try 1')
+    Alpaca_df=alpaca()
+    print(Alpaca_df)
+    test_op['alpaca']=len(Alpaca_df)
+  except:
+    try:
+      initialize()
+    except:
+      try:
+        print('alpaca Try 2')
+        Alpaca_df=alpaca()
+        print(Alpaca_df)
+        test_op['alpaca']=len(Alpaca_df)        
+        
+      except:
+        print('Failed to Extract alpaca') 
+ 
   return test_op
 
 """### Execution"""
