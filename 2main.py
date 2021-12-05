@@ -89,7 +89,7 @@ coingecko_fail=0
 pangolin_fail=0
 alpaca_fail=0
 
-date_time_now=str(datetime.now(pytz.timezone('Hongkong')))[:16]
+date_time_now=str(datetime)[:16]
 
 
 
