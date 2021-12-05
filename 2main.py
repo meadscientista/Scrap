@@ -27,6 +27,7 @@ import warnings
 import re
 import pandas as pd
 from datetime import date
+from pytz import timezone
 from datetime import datetime
 import time
 warnings.filterwarnings("ignore", category=DeprecationWarning)
@@ -89,7 +90,7 @@ coingecko_fail=0
 pangolin_fail=0
 alpaca_fail=0
 
-date_time_now=str(datetime)[:16]
+date_time_now=str(datetime.now(pytz.timezone('Hongkong')))[:16]
 
 
 
