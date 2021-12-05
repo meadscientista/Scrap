@@ -637,6 +637,8 @@ def convex():
     soup1 = BeautifulSoup(''.join(page1), 'html.parser')
     web_data=soup1
     print('Soup Loaded')
+    with open("ConvexSoup.html", "w") as text_file:
+        text_file.write(soup1)
     main_list=web_data.find_all("div",class_= "jsx-2417581814 container secondary not-always-expanded has-no-nested-action-box ")
     main_dict=[]
     import re
@@ -678,6 +680,7 @@ def convex():
     file_from = opname  
     file_to = '/'+opname
     upload_file(file_from,file_to)
+    upload_file('ConvexSoup.html','/ConvexSoup.html')
     
     return df
     print("Extracted in ",convex_fail+1,"attempts")
