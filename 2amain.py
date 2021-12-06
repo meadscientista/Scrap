@@ -652,13 +652,15 @@ def convex():
  
     print('HTML Made')
     upload_file('ConvexSoup.html','/ConvexSoup.html')
-    main_list=web_data.find_all("div",class_= "jsx-2417581814 container secondary not-always-expanded has-no-nested-action-box ")
+    main_list=web_data.find_all("div",class_= "jsx-2417581814 container secondary not-always-expanded has-no-nested-action-box")
+    print(len(main_list),'Convex Count')
     main_dict=[]
     import re
     for i in main_list:
         record=[]
         roww=i
         rowws=str(roww)
+        print('x1')
 
         #print(i.contents)
         ##record.append(i.find( "h1" , class_='AssetItem_symbol__3_Oq5'))
@@ -1197,7 +1199,8 @@ def pancake():
     print('HHTML Made')
     upload_file('PancakeSoup.html','/PancakeSoup.html')
     web_data=soup1
-    main_list=web_data.find_all("tr",class_= "sc-feWZte jehVgy")
+    main_list=web_data.find_all("tr",class_= "sc-iNhCjk fZwsUA")
+    print(len(main_list),'Pancake Size')
     main_dict=[]
     import re
     for i in main_list:
