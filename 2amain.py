@@ -149,9 +149,12 @@ def connect_to_dropbox():
 
   
 def upload_file(file_from, file_to):
-    dbx = dropbox.Dropbox(TOKEN)
-    f = open(file_from, 'rb')
-    dbx.files_upload(f.read(), file_to)
+    try:
+        dbx = dropbox.Dropbox(TOKEN)
+        f = open(file_from, 'rb')
+        dbx.files_upload(f.read(), file_to)
+    except Exception as xxx:
+        print('Failed to upload',xxx)
     
     
 def Failure_Email(Missing):
@@ -639,6 +642,7 @@ def convex():
     print('Soup Loaded')
     with open("ConvexSoup.html", "w") as text_file:
         text_file.write(soup1)
+    print('HTML Made')
     upload_file('ConvexSoup.html','/ConvexSoup.html')
     main_list=web_data.find_all("div",class_= "jsx-2417581814 container secondary not-always-expanded has-no-nested-action-box ")
     main_dict=[]
@@ -1178,6 +1182,7 @@ def pancake():
     print('Web Extracted')
     with open("PancakeSoup.html", "w") as text_file:
         text_file.write(soup1)
+    print('HHTML Made')
     upload_file('PancakeSoup.html','/PancakeSoup.html')
     web_data=soup1
     main_list=web_data.find_all("tr",class_= "sc-feWZte jehVgy")
