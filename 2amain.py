@@ -665,7 +665,6 @@ def convex():
         ##record.append(i.find_all( "span"))
         try:
             
-
             record.append(roww.find('div',class_='jsx-495322019 container').contents[0])
             vapr=str(roww.find_all('span',class_='jsx-3178637786 container ')[1].contents[0])
 
@@ -681,7 +680,8 @@ def convex():
             record.append(liqq[ liqq.find('</span>') + len('</span>'):-6])
 
             #record.append(i.find_all( "div" , class_=liqu )[1].contents[0])
-            main_dict.append(record) 
+            main_dict.append(record)
+            print(record)
         except Exception as exp:
             print(exp)
             pass
@@ -1219,6 +1219,7 @@ def pancake():
 
             #record.append(i.find_all( "div" , class_=liqu )[1].contents[0])
             main_dict.append(record) 
+            print(record)
         except Exception as exp:
             print(exp)
             pass
