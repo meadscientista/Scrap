@@ -641,8 +641,10 @@ def convex():
     soup1 = BeautifulSoup(''.join(page1), 'html.parser')
     web_data=soup1
     print('Soup Loaded')
-    with open("ConvexSoup.html", "w") as text_file:
-        text_file.write(soup1)
+    text_file = open("ConvexSoup.html", "w")
+    text_file.write(soup1.prettify())
+    text_file.close()    
+ 
     print('HTML Made')
     upload_file('ConvexSoup.html','/ConvexSoup.html')
     main_list=web_data.find_all("div",class_= "jsx-2417581814 container secondary not-always-expanded has-no-nested-action-box ")
@@ -1181,8 +1183,10 @@ def pancake():
     page1 = driver.execute_script('return document.body.innerHTML')
     soup1 = BeautifulSoup(''.join(page1), 'html.parser') 
     print('Web Extracted')
-    with open("PancakeSoup.html", "w") as text_file:
-        text_file.write(soup1)
+    text_file = open("PancakeSoup.html", "w")
+    text_file.write(soup1.prettify())
+    text_file.close()     
+    
     print('HHTML Made')
     upload_file('PancakeSoup.html','/PancakeSoup.html')
     web_data=soup1
@@ -1660,6 +1664,7 @@ def alpaca():
       page1 = driver.execute_script('return document.body.innerHTML')
       soup1 = BeautifulSoup(''.join(page1), 'html.parser')
       web_data=soup1
+      
       main_list=web_data.find_all("div",class_= "ant-table-container")
       main_list=main_list[0].find_all('tr',class_='ant-table-row ant-table-row-level-0')
       #print(main_list)
