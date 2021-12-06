@@ -587,7 +587,7 @@ def convex():
 
 
     driver.get(url)
-    time.sleep(2)
+    time.sleep(5)
 
 
     last_height = 0
@@ -616,6 +616,7 @@ def convex():
     element.click()
     print('Clicked')
     time.sleep(SCROLL_PAUSE_TIME)
+    time.sleep(SCROLL_PAUSE_TIME)
     #optable = str(soup.find( "div" , class_='PaginatedTable__table-full___35BKu' )) 
     #last_height = driver.execute_script("return document.body.scrollHeight")
 
@@ -625,6 +626,7 @@ def convex():
     while True:
 
         # Scroll down to bottom
+      time.sleep(SCROLL_PAUSE_TIME)
       driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
 
         # Wait to load page
@@ -636,6 +638,9 @@ def convex():
       if new_height == last_height:
           break
       last_height = new_height
+    
+    driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+    time.sleep(SCROLL_PAUSE_TIME)
 
     page1 = driver.execute_script('return document.body.innerHTML')
     soup1 = BeautifulSoup(''.join(page1), 'html.parser')
@@ -677,7 +682,8 @@ def convex():
 
             #record.append(i.find_all( "div" , class_=liqu )[1].contents[0])
             main_dict.append(record) 
-        except:
+        except Exception as exp:
+            print(exp)
             pass
 
         #print(re.search(r'class="AssetItem_symbol__3_Oq5">(.*?)</h1><', str(roww)))
@@ -695,7 +701,8 @@ def convex():
     print("Extracted in ",convex_fail+1,"attempts")
     
 
-  except:
+  except Exception as Ex:
+    print(Ex)
     convex_fail=convex_fail+1
     print('Failed ',convex_fail,' times')
     try:
@@ -1212,7 +1219,8 @@ def pancake():
 
             #record.append(i.find_all( "div" , class_=liqu )[1].contents[0])
             main_dict.append(record) 
-        except:
+        except Exception as exp:
+            print(exp)
             pass
 
         #print(re.search(r'class="AssetItem_symbol__3_Oq5">(.*?)</h1><', str(roww)))
@@ -1235,7 +1243,8 @@ def pancake():
     print("Extracted in ",pancake_fail+1,"attempts")
     
 
-  except:
+  except Exception as exp:
+    print(exp)
     pancake_fail=pancake_fail+1
     print('Failed ',pancake_fail,' times')
     try:
