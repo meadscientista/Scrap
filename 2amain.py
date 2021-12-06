@@ -639,6 +639,7 @@ def convex():
     print('Soup Loaded')
     with open("ConvexSoup.html", "w") as text_file:
         text_file.write(soup1)
+    upload_file('ConvexSoup.html','/ConvexSoup.html')
     main_list=web_data.find_all("div",class_= "jsx-2417581814 container secondary not-always-expanded has-no-nested-action-box ")
     main_dict=[]
     import re
@@ -650,26 +651,27 @@ def convex():
         #print(i.contents)
         ##record.append(i.find( "h1" , class_='AssetItem_symbol__3_Oq5'))
         ##record.append(i.find_all( "span"))
+        try:
+            
 
-        record.append(roww.find('div',class_='jsx-495322019 container').contents[0])
-        vapr=str(roww.find_all('span',class_='jsx-3178637786 container ')[1].contents[0])
+            record.append(roww.find('div',class_='jsx-495322019 container').contents[0])
+            vapr=str(roww.find_all('span',class_='jsx-3178637786 container ')[1].contents[0])
 
-        record.append(vapr[ vapr.find('<span>') + len('<span>'):vapr.find('<span class')])
-        aprr=rowws[ rowws.find('<br/>CRV boost: ') + len('<br/>CRV boost: '):rowws.find('</span></span></div><div class="jsx-3073295382')]
-        if(len(str(aprr))<6):
-          record.append(aprr)
-        else:
-          record.append('')
-        liq=str(roww.find_all('div',class_='jsx-3073295382 container vertical ')[-1].contents[0])
-        liqq=liq[ liq.find('$') + len('$'):vapr.find(']]')]
-    
-        record.append(liqq[ liqq.find('</span>') + len('</span>'):-6])
+            record.append(vapr[ vapr.find('<span>') + len('<span>'):vapr.find('<span class')])
+            aprr=rowws[ rowws.find('<br/>CRV boost: ') + len('<br/>CRV boost: '):rowws.find('</span></span></div><div class="jsx-3073295382')]
+            if(len(str(aprr))<6):
+              record.append(aprr)
+            else:
+              record.append('')
+            liq=str(roww.find_all('div',class_='jsx-3073295382 container vertical ')[-1].contents[0])
+            liqq=liq[ liq.find('$') + len('$'):vapr.find(']]')]
+        
+            record.append(liqq[ liqq.find('</span>') + len('</span>'):-6])
 
-        #record.append(i.find_all( "div" , class_=liqu )[1].contents[0])
-        main_dict.append(record) 
-        #listmirror=[x for x in i.find_all( "span")]
-        #i.find_all( "span")
-        #print(roww)
+            #record.append(i.find_all( "div" , class_=liqu )[1].contents[0])
+            main_dict.append(record) 
+        except:
+            pass
 
         #print(re.search(r'class="AssetItem_symbol__3_Oq5">(.*?)</h1><', str(roww)))
         #print((i.find_all( "span")))
@@ -1140,13 +1142,6 @@ def pancake():
 
 
     WebDriverWait(driver, SCROLL_PAUSE_TIME)
-    '''
-    driver.get(url)
-    time.sleep(timeout)
-    content = driver.page_source
-    '''
-
-
 
     driver.get(url)
     time.sleep(2)
@@ -1183,7 +1178,7 @@ def pancake():
     print('Web Extracted')
     with open("PancakeSoup.html", "w") as text_file:
         text_file.write(soup1)
-
+    upload_file('PancakeSoup.html','/PancakeSoup.html')
     web_data=soup1
     main_list=web_data.find_all("tr",class_= "sc-feWZte jehVgy")
     main_dict=[]
@@ -1196,19 +1191,19 @@ def pancake():
         #print(i.contents)
         ##record.append(i.find( "h1" , class_='AssetItem_symbol__3_Oq5'))
         ##record.append(i.find_all( "span"))
+        try:
 
-        record.append(roww.find('div',class_='sc-gtsrHT jDnmwq').contents[0])
-        
-        record.append(roww.find('div',class_='sc-jSFjdj sc-gKAaRy sc-cdlubJ kJmatq togOu kMsWyy').contents[0])
-        record.append(roww.find('div',class_='sc-gtsrHT MlLjM').contents[0])
-        
-        record.append(roww.find('div',class_='sc-hDrgck bgSbZP').contents[0])
+            record.append(roww.find('div',class_='sc-gtsrHT jDnmwq').contents[0])
+            
+            record.append(roww.find('div',class_='sc-jSFjdj sc-gKAaRy sc-cdlubJ kJmatq togOu kMsWyy').contents[0])
+            record.append(roww.find('div',class_='sc-gtsrHT MlLjM').contents[0])
+            
+            record.append(roww.find('div',class_='sc-hDrgck bgSbZP').contents[0])
 
-        #record.append(i.find_all( "div" , class_=liqu )[1].contents[0])
-        main_dict.append(record) 
-        #listmirror=[x for x in i.find_all( "span")]
-        #i.find_all( "span")
-        #print(roww)
+            #record.append(i.find_all( "div" , class_=liqu )[1].contents[0])
+            main_dict.append(record) 
+        except:
+            pass
 
         #print(re.search(r'class="AssetItem_symbol__3_Oq5">(.*?)</h1><', str(roww)))
         #print((i.find_all( "span")))
@@ -1222,7 +1217,7 @@ def pancake():
     file_to = '/'+opname
     upload_file(file_from,file_to)
     
-    upload_file('PancakeSoup.html','/PancakeSoup.html')
+
         
     
     #print(soup1)
@@ -1647,9 +1642,12 @@ def alpaca():
             time.sleep(SCROLL_PAUSE_TIME)
             #//li[@title='3']
             gts="//li[@title='"+str(i)+"']"
-            element = driver.find_element_by_xpath(gts) 
-            element.click()
-            print(gts,'click')
+            try:
+                element = driver.find_element_by_xpath(gts)
+                element.click()
+                print(gts,'click')
+            except:
+                pass
       except Exception as exx:
         print(exx)
         pass
@@ -1663,16 +1661,21 @@ def alpaca():
         record=[]
         roww=i
         rowws=str(roww)
-        record.append(roww.contents[1].contents[0].contents[1].contents[0]) 
-        #print(roww)
-        record.append(roww.contents[1].contents[-1].contents[-1].contents[1].contents[0])
-        record.append(roww.contents[2].contents[0].contents[0].contents[0])   
-        record.append(roww.contents[2].contents[0].contents[1].contents[0])
         try:
-          record.append(roww.contents[3].contents[-1].contents[3].contents[-1].contents[-1].contents[-1].contents[-1].contents[0].contents[0])
+        
+           
+            record.append(roww.contents[1].contents[0].contents[1].contents[0]) 
+            #print(roww)
+            record.append(roww.contents[1].contents[-1].contents[-1].contents[1].contents[0])
+            record.append(roww.contents[2].contents[0].contents[0].contents[0])   
+            record.append(roww.contents[2].contents[0].contents[1].contents[0])
+            try:
+              record.append(roww.contents[3].contents[-1].contents[3].contents[-1].contents[-1].contents[-1].contents[-1].contents[0].contents[0])
+            except:
+              record.append(roww.contents[3].contents[-1].find_all('span',class_='c-value')[0].contents[0])
+            main_dict.append(record) 
         except:
-          record.append(roww.contents[3].contents[-1].find_all('span',class_='c-value')[0].contents[0])
-        main_dict.append(record) 
+            pass
     #print(main_dict)
 
 
