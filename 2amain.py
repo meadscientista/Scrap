@@ -1317,7 +1317,7 @@ def traderjoe():
       
       
       web_data=soup1
-      main_list=web_data.find_all("div",class_= "sc-jdeSqf hDGfIi")
+      main_list=web_data.find_all("div",class_= "sc-dEfkYy eXbIfS")
       print(len(main_list))
       for i in main_list:
         record=[]
