@@ -573,7 +573,7 @@ def convex():
     chrome_options.add_argument('--no-sandbox') 
     chrome_options.add_argument('--disable-dev-shm-usage') 
     driver=webdriver.Chrome(executable_path=os.getenv('CHROME_EXECUTABLE_PATH'), options=chrome_options)
-    SCROLL_PAUSE_TIME = 4
+    SCROLL_PAUSE_TIME = 5
 
     driver.maximize_window()
 
@@ -670,7 +670,8 @@ def convex():
             record.append(roww.find('div',class_='jsx-495322019 container').contents[0].strip())
 
             try:
-                record.append(roww.find_all('span',class_='jsx-3178637786 container')[1].contents[1].contents[0].strip())
+            
+                record.append(roww.find_all('span',class_='jsx-3178637786 container')[1].find('span').contents[0].strip())
             except:
                 record.append('')
 
