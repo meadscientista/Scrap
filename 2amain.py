@@ -680,7 +680,7 @@ def convex():
     file_from = opname  
     file_to = '/'+opname
     upload_file(file_from,file_to)
-    upload_file('ConvexSoup.html','/ConvexSoup.html')
+    #upload_file('ConvexSoup.html','/ConvexSoup.html')
     
     return df
     print("Extracted in ",convex_fail+1,"attempts")
@@ -771,7 +771,7 @@ def raydium():
     text_file.close()    
  
     print('HTML Made')
-    upload_file('RaydiumSoup.html','/RaydiumSoup.html')
+    #upload_file('RaydiumSoup.html','/RaydiumSoup.html')
 
 
     web_data=BeautifulSoup(str(soup1).replace('<!-- --> <div data-v-6ec849c0="">',''))
@@ -1316,7 +1316,7 @@ def traderjoe():
       fnameh='joesoup'+str(i)+'.html'
  
       print('HTML Made')
-      upload_file(fnameh,'/'+fnameh)
+      #upload_file(fnameh,'/'+fnameh)
       
       
       web_data=soup1
@@ -1758,7 +1758,7 @@ def alpaca():
 def All_Crypto():
   #All_websites = pd.DataFrame(columns = ['Pool', 'TVL','APR','source'])
   test_op={'mirror':0,'convex':0,'raydium':0,'balancer':0,'ubeswap':0,'traderjoe':0,'pancake':0,'sushi_nokashi_farm':0,'coingecko':0,'pangolin':0,'alpaca':0}
-  '''
+  
   try:
     print('Mirror Try 1')
     Mirror_df=mirror()
@@ -1792,7 +1792,7 @@ def All_Crypto():
         test_op['convex']=len(Convex_df)
       except:
         print('Failed to Extract Convex')    
-  '''
+  
   try:
     print('raydium Try 1')
     Raydium_df=raydium()
@@ -1809,23 +1809,7 @@ def All_Crypto():
         test_op['raydium']=len(Raydium_df)
       except:
         print('Failed to Extract raydium')    
-  '''
-  try:
-    print('balancer Try 1')
-    Balancer_df=balancer()
-    #print(Balancer_df)
-    test_op['balancer']=len(Balancer_df)
-  except:
-    try:
-      initialize()
-    except:
-      try:
-        print('balancer Try 2')
-        Balancer_df=balancer()
-        #print(Balancer_df)
-        test_op['balancer']=len(Balancer_df)
-      except:
-        print('Failed to Extract balancer')    
+     
 
   try:
     print('ubeswap Try 1')
@@ -1843,7 +1827,7 @@ def All_Crypto():
         test_op['ubeswap']=len(Ubeswap_df)
       except:
         print('Failed to Extract ubeswap')    
-  '''
+  
   try:
     print('traderjoe Try 1')
     Traderjoe_df=traderjoe()
@@ -1861,7 +1845,7 @@ def All_Crypto():
         
       except:
         print('Failed to Extract traderjoe')    
-  '''
+  
   try:
     print('pancake Try 1')
     Pancake_df=pancake()
@@ -1952,7 +1936,25 @@ def All_Crypto():
         
       except:
         print('Failed to Extract alpaca') 
-    '''
+  try:
+    print('balancer Try 1')
+    Balancer_df=balancer()
+    #print(Balancer_df)
+    test_op['balancer']=len(Balancer_df)
+  except:
+    try:
+      initialize()
+    except:
+      try:
+        print('balancer Try 2')
+        Balancer_df=balancer()
+        #print(Balancer_df)
+        test_op['balancer']=len(Balancer_df)
+      except:
+        print('Failed to Extract balancer')         
+        
+        
+    
   return test_op
 
 """### Execution"""
