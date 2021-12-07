@@ -791,11 +791,12 @@ def raydium():
         #vapr=str(roww.find_all('span',class_='jsx-3178637786 container ')[1].contents[0])
         #print(roww.find('div',class_='state ant-col ant-col-6').find('div',class_='value'))
         
-        aprr=str(roww.find_all('div',class_='value')[1].contents[0])
-        aprs=aprr[ aprr.find('c0="">') + len('c0="">'):aprr.find('</div>')].strip().replace("\n", '')
+        #aprr=str(roww.find_all('div',class_='value')[1].contents[0])
+        #aprs=aprr[ aprr.find('c0="">') + len('c0="">'):aprr.find('</div>')].strip().replace("\n", '')
         
         
-        record.append(aprs)
+        #record.append(aprs)
+        record.append(roww.find_all('div',class_='state ant-col ant-col-5')[1].contents[-1].contents[0].contents[0].strip())
         #liq=str(roww.find_all('div',class_='jsx-3073295382 container vertical ')[-1].contents[0])
         #liqq=liq[ liq.find('$') + len('$'):vapr.find(']]')]
     
