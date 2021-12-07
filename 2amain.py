@@ -1238,7 +1238,7 @@ def pancake():
     #print("Extracted in ",nerve_fail+1,"attempts")
     #print("Extracted ",len(df)," records")
 
-    print("Extracted ",pancake_fail+1," records")
+    print("Extracted ",len(df)," records")
     df.to_csv(opname)
     file_from = opname  
     file_to = '/'+opname
@@ -1342,7 +1342,7 @@ def traderjoe():
     df=df.drop_duplicates(subset=['Pool Name'])
     df.to_csv('Trader Joe.csv')
 
-    print("Extracted ",traderjoe_fail+1," records")
+    print("Extracted ",len(df)," records")
     df.to_csv(opname)
     file_from = opname  
     file_to = '/'+opname
@@ -1432,7 +1432,7 @@ def coingecko():
     file_to = '/'+opname
     upload_file(file_from,file_to)
     
-    print("Extracted ",coingecko_fail+1," records")
+    print("Extracted ",len(df)," records")
 
 
     return df
@@ -1968,6 +1968,16 @@ missing=[]
 for i in All_Websites_df:
     if(All_Websites_df[i]==0):
         missing.append(i)
+
+Err_df=pd.DataFrame(All_Websites_df,index=['Source','Failures'])
+Erro_df=Err_df.T
+Error_df=Erro_df[Erro_df['Source']>0]
+Error_df.to_csv(Erro_df_Name)
+
+if(len(Error_df)>0):
+  file_from = Erro_df_Name  
+  file_to = '/'+Erro_df_Name
+  upload_file(file_from,file_to)
 
 if(len(missing)>0):
   Failure_Email(missing)
