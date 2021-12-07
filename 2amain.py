@@ -1323,12 +1323,16 @@ def traderjoe():
         record=[]
         roww=i
         rowws=str(roww)
-        record.append(roww.find('div',class_='sc-bZQynM jmMmRU css-r99fas').contents[0]) 
-        #print(roww)
-        record.append(roww.find_all('div',class_='sc-bZQynM dkmKkO css-1ecm0so')[0].contents[0])
-        record.append(roww.find_all('div',class_='sc-bZQynM dkmKkO css-1ecm0so')[1].contents[0])   
-        record.append(roww.find_all('div',class_='sc-bZQynM dkmKkO css-1ecm0so')[2].contents[0])
-        main_dict.append(record) 
+        try:                
+            record.append(roww.find('div',class_='sc-bZQynM jmMmRU css-r99fas').contents[0]) 
+            #print(roww)
+            record.append(roww.find_all('div',class_='sc-bZQynM dkmKkO css-1ecm0so')[0].contents[0])
+            record.append(roww.find_all('div',class_='sc-bZQynM dkmKkO css-1ecm0so')[1].contents[0])   
+            record.append(roww.find_all('div',class_='sc-bZQynM dkmKkO css-1ecm0so')[2].contents[0])
+            main_dict.append(record) 
+        except Exception as Exx:
+            print(Exx)
+            pass
         
 
     df = pd.DataFrame(main_dict, columns = ['Pool Name', 'Pool Weight','Liquidity','APR'])
