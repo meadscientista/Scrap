@@ -651,7 +651,7 @@ def convex():
     text_file.close()    
  
     print('HTML Made')
-    upload_file('ConvexSoup.html','/ConvexSoup.html')
+    #upload_file('ConvexSoup.html','/ConvexSoup.html')
     main_list=web_data.find_all("div",class_= "jsx-2417581814 container secondary not-always-expanded has-no-nested-action-box")
     print(len(main_list),'Convex Count')
     main_dict=[]
@@ -1197,7 +1197,7 @@ def pancake():
     text_file.close()     
     
     print('HHTML Made')
-    upload_file('PancakeSoup.html','/PancakeSoup.html')
+    #upload_file('PancakeSoup.html','/PancakeSoup.html')
     web_data=soup1
     main_list=web_data.find_all("tr",class_= "sc-iNhCjk fZwsUA")
     print(len(main_list),'Pancake Size')
