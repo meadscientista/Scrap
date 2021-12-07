@@ -1295,11 +1295,13 @@ def traderjoe():
     for i in range(1,8):
       time.sleep(SCROLL_PAUSE_TIME)
       try:
-            driver.execute_script("window.scrollTo(0, document.body.scrollHeight-1000);")
+            driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
             time.sleep(SCROLL_PAUSE_TIME)
             gts="//button[@aria-label='Go to page "+str(i)+"']"
             element = driver.find_element_by_xpath(gts) 
             element.click()
+            time.sleep(SCROLL_PAUSE_TIME)
+            driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
             print('click',gts)
       except:
         pass
@@ -1317,7 +1319,7 @@ def traderjoe():
       
       
       web_data=soup1
-      main_list=web_data.find_all("div",class_= "sc-dEfkYy eXbIfS")
+      main_list=web_data.find_all("div",class_= "sc-jdfcpN USxzQ")
       print(len(main_list))
       for i in main_list:
         record=[]
