@@ -1748,7 +1748,7 @@ def alpaca():
 def All_Crypto():
   #All_websites = pd.DataFrame(columns = ['Pool', 'TVL','APR','source'])
   test_op={'mirror':0,'convex':0,'raydium':0,'balancer':0,'ubeswap':0,'traderjoe':0,'pancake':0,'sushi_nokashi_farm':0,'coingecko':0,'pangolin':0,'alpaca':0}
-  '''
+  
   try:
     print('Mirror Try 1')
     Mirror_df=mirror()
@@ -1764,7 +1764,7 @@ def All_Crypto():
         #print(Mirror_df)
       except:
         print('Failed to Extract Mirror')    
-  '''
+  
   try:
     print('Convex Try 1')
     Convex_df=convex()
@@ -1782,7 +1782,7 @@ def All_Crypto():
         test_op['convex']=len(Convex_df)
       except:
         print('Failed to Extract Convex')    
-  '''
+  
   try:
     print('raydium Try 1')
     Raydium_df=raydium()
@@ -1851,7 +1851,7 @@ def All_Crypto():
         
       except:
         print('Failed to Extract traderjoe')    
-  '''
+  
   try:
     print('pancake Try 1')
     Pancake_df=pancake()
@@ -1870,7 +1870,7 @@ def All_Crypto():
         test_op['pancake']=len(Pancake_df)        
       except:
         print('Failed to Extract pancake')    
-  '''
+  
   try:
     print('sushi_nokashi_farm Try 1')
     Sushi_nokashi_farm_df=sushi_nokashi_farm()
@@ -1923,7 +1923,7 @@ def All_Crypto():
       except:
         print('Failed to Extract pangolin') 
  
-  '''
+  
   try:
     print('alpaca Try 1')
     Alpaca_df=alpaca()
