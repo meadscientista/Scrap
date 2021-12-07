@@ -676,7 +676,8 @@ def convex():
                 record.append('')
 
             try:
-                record.append(roww.find_all('span',class_='jsx-3178637786 container')[1].find_all('span',class_='small')[1].contents[2].strip())
+                print(roww.find_all('span',class_='jsx-3178637786 container')[1].find_all('span',class_='small'))
+                record.append(roww.find_all('span',class_='jsx-3178637786 container')[1].find_all('span',class_='small')[-1].contents[-1].strip())
             except:
                 record.append('')
 
