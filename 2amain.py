@@ -667,23 +667,21 @@ def convex():
         ##record.append(i.find_all( "span"))
         try:
             
-            record.append(roww.find('div',class_='jsx-495322019 container').contents[0])
-            vapr=str(roww.find_all('span',class_='jsx-3178637786 container ')[1].contents[0])
+            record.append(roww.find('div',class_='jsx-495322019 container').contents[0].strip())
 
-            record.append(vapr[ vapr.find('<span>') + len('<span>'):vapr.find('<span class')])
-            aprr=rowws[ rowws.find('<br/>CRV boost: ') + len('<br/>CRV boost: '):rowws.find('</span></span></div><div class="jsx-3073295382')]
-            if(len(str(aprr))<6):
-              record.append(aprr)
-            else:
-              record.append('')
-            liq=str(roww.find_all('div',class_='jsx-3073295382 container vertical ')[-1].contents[0])
-            liqq=liq[ liq.find('$') + len('$'):vapr.find(']]')]
-        
-            record.append(liqq[ liqq.find('</span>') + len('</span>'):-6])
+            try:
+                record.append(roww.find_all('span',class_='jsx-3178637786 container')[1].contents[1].contents[0].strip())
+            except:
+                record.append('')
 
-            #record.append(i.find_all( "div" , class_=liqu )[1].contents[0])
-            main_dict.append(record)
-            print(record)
+            try:
+                record.append(roww.find_all('span',class_='jsx-3178637786 container')[1].contents[-2].contents[-1].strip())
+            except:
+                record.append('')
+
+            record.append(roww.find_all('span',class_='jsx-3178637786 container')[-1].contents[-1].strip())
+            main_dict.append(record) 
+            #print(record)
         except Exception as exp:
             print(exp)
             pass
