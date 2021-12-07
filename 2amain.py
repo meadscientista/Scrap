@@ -1300,9 +1300,10 @@ def traderjoe():
             gts="//button[@aria-label='Go to page "+str(i)+"']"
             element = driver.find_element_by_xpath(gts) 
             element.click()
-            print('click')
+            print('click',gts)
       except:
         pass
+      time.sleep(SCROLL_PAUSE_TIME)
       page1 = driver.execute_script('return document.body.innerHTML')
       soup1 = BeautifulSoup(''.join(page1), 'html.parser')
       fnameh='joesoup'+str(i)+'.html'
@@ -1317,7 +1318,7 @@ def traderjoe():
       
       web_data=soup1
       main_list=web_data.find_all("div",class_= "sc-jdeSqf hDGfIi")
-      #print(main_list)
+      print(len(main_list))
       for i in main_list:
         record=[]
         roww=i
