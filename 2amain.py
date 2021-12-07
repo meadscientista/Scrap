@@ -1969,6 +1969,8 @@ for i in All_Websites_df:
     if(All_Websites_df[i]==0):
         missing.append(i)
 
+Erro_df_Name='Error_List'+str(date_time_now)+'.csv'
+
 Err_df=pd.DataFrame(All_Websites_df,index=['Source','Failures'])
 Erro_df=Err_df.T
 Error_df=Erro_df[Erro_df['Source']>0]
