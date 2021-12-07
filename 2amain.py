@@ -1305,7 +1305,8 @@ def traderjoe():
         pass
       page1 = driver.execute_script('return document.body.innerHTML')
       soup1 = BeautifulSoup(''.join(page1), 'html.parser')
-      text_file = open("ConvexSoup.html", "w")
+      fnameh='joesoup'+str(i)+'.html'
+      text_file = open(fnameh, "w")
       text_file.write(soup1.prettify())
       text_file.close()    
       fnameh='joesoup'+str(i)+'.html'
