@@ -660,7 +660,7 @@ def convex():
         record=[]
         roww=i
         rowws=str(roww)
-        print('x1')
+        #print('x1')
 
         #print(i.contents)
         ##record.append(i.find( "h1" , class_='AssetItem_symbol__3_Oq5'))
@@ -1207,11 +1207,13 @@ def pancake():
         record=[]
         roww=i
         rowws=str(roww)
+        print('x1')
 
         #print(i.contents)
         ##record.append(i.find( "h1" , class_='AssetItem_symbol__3_Oq5'))
         ##record.append(i.find_all( "span"))
         try:
+            print(roww)
 
             record.append(roww.find('div',class_='sc-gtsrHT jDnmwq').contents[0])
             
@@ -1674,6 +1676,7 @@ def alpaca():
       except Exception as exx:
         print(exx)
         pass
+      time.sleep(SCROLL_PAUSE_TIME)
       page1 = driver.execute_script('return document.body.innerHTML')
       soup1 = BeautifulSoup(''.join(page1), 'html.parser')
       web_data=soup1
