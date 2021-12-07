@@ -1213,18 +1213,28 @@ def pancake():
         ##record.append(i.find( "h1" , class_='AssetItem_symbol__3_Oq5'))
         ##record.append(i.find_all( "span"))
         try:
-            print(roww)
+            #print(roww)
 
-            record.append(roww.find('div',class_='sc-gtsrHT jDnmwq').contents[0])
-            
-            record.append(roww.find('div',class_='sc-jSFjdj sc-gKAaRy sc-cdlubJ kJmatq togOu kMsWyy').contents[0])
-            record.append(roww.find('div',class_='sc-gtsrHT MlLjM').contents[0])
-            
-            record.append(roww.find('div',class_='sc-hDrgck bgSbZP').contents[0])
+            try:
+                record.append(roww.find('div',class_='sc-gtsrHT jDnmwq').contents[0].strip())
+            except:
+                record.append('')
+            try:
+                record.append(roww.find('div', class_="sc-jSFjdj sc-gKAaRy sc-eSRwjH kJmatq togOu lnhkkx").contents[0].strip())
+            except:
+                record.append('')       
+            try:
+                record.append(roww.find('div',class_='sc-gtsrHT MlLjM').contents[0].strip())
+            except:
+                record.append('')
+            try:
+                record.append(roww.find('div',class_='sc-cBsszO eKkVhu').contents[0].strip())
+            except:
+                record.append('')  
 
             #record.append(i.find_all( "div" , class_=liqu )[1].contents[0])
             main_dict.append(record) 
-            print(record)
+            #print(record)
         except Exception as exp:
             print(exp)
             pass
