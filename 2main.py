@@ -1004,8 +1004,13 @@ def ubeswap():
     content = driver.page_source
     '''
 
-    driver.get(url)
+    driver.get(url) 
     time.sleep(SCROLL_PAUSE_TIME)
+    driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+    time.sleep(SCROLL_PAUSE_TIME)
+    driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+    time.sleep(SCROLL_PAUSE_TIME)
+    
 
     #optable = str(soup.find( "div" , class_='PaginatedTable__table-full___35BKu' )) 
     #last_height = driver.execute_script("return document.body.scrollHeight")
