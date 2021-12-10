@@ -1732,8 +1732,7 @@ def alpaca():
           record.append(roww.contents[3].contents[-1].find_all('span',class_='c-name')[0].contents[0])
         main_dict.append(record) 
       
-        except:
-            pass
+
     #print(main_dict)
 
 
