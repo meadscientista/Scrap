@@ -1607,8 +1607,9 @@ def traderjoe():
       
       web_data=soup1
       #sc-gNJABI jgByc
-      main_list=web_data.find_all("div",class_= "sc-gNJABI jgByc")
+      main_list=web_data.find_all("div",class_= "sc-kNBZmU fcuCFn")
       print(len(main_list))
+      #print(len(main_list))
       for i in main_list:
         record=[]
         roww=i
@@ -2046,7 +2047,7 @@ def alpaca():
 def All_Crypto():
   #All_websites = pd.DataFrame(columns = ['Pool', 'TVL','APR','source'])
   test_op={'mirror':0,'convex':0,'raydium':0,'balancer':0,'ubeswap':0,'traderjoe':0,'pancake':0,'sushi_nokashi_farm':0,'coingecko':0,'pangolin':0,'alpaca':0}
-  
+  '''
   try:
     print('Mirror Try 1')
     Mirror_df=mirror()
@@ -2115,7 +2116,7 @@ def All_Crypto():
         test_op['ubeswap']=len(Ubeswap_df)
       except:
         print('Failed to Extract ubeswap')    
-  
+  '''
   try:
     print('traderjoe Try 1')
     Traderjoe_df=traderjoe()
