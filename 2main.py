@@ -1602,7 +1602,7 @@ def traderjoe():
       fnameh='joesoup'+str(i)+'.html'
  
       print('HTML Made')
-      #upload_file(fnameh,'/'+fnameh)
+      upload_file(fnameh,'/'+fnameh)
       
       
       web_data=soup1
