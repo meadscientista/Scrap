@@ -1600,9 +1600,9 @@ def traderjoe():
       text_file.write(soup1.prettify())
       text_file.close()    
       fnameh='joesoup'+str(i)+'.html'
- 
+      upload_file(fnameh,'/'+fnameh) 
       print('HTML Made')
-      upload_file(fnameh,'/'+fnameh)
+
       
       
       web_data=soup1
