@@ -1024,7 +1024,10 @@ def ubeswap():
     for i in main_list:
         roww=i
         record=[]
-        record.append(roww.find('div',class_='sc-cxFLGX cNbTaJ css-1t1fovp').contents[0])
+        try:
+          record.append(roww.find('div',class_='sc-cxFLGX cNbTaJ css-1t1fovp').contents[0])
+        except:
+          record.append('')
         try:
           record.append(roww.find_all('div',class_='sc-cxFLGX cNbTaJ css-8626y4')[2].contents[0])
         except:
