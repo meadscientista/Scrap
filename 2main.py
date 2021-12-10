@@ -980,6 +980,280 @@ def balancer():
 
 
   return df
+  
+def balancer_eth():
+  print("Started Balancer_eth")
+  opname='balancer_eth'+str(date_time_now)+'.csv'
+  url="https://app.balancer.fi/#/"
+  import time
+  global balancer_fail
+  chrome_options.add_argument("--start-maximized")
+  try:
+    
+    chrome_options.add_argument('--no-sandbox') 
+    chrome_options.add_argument('--disable-dev-shm-usage') 
+    driver=webdriver.Chrome(executable_path=os.getenv('CHROME_EXECUTABLE_PATH'), options=chrome_options)
+
+    SCROLL_PAUSE_TIME = 4
+    driver.set_window_size(1024, 600)
+    driver.maximize_window()
+    WebDriverWait(driver, SCROLL_PAUSE_TIME)
+    driver.get(url)
+    time.sleep(2)
+    last_height = 0
+    driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+    time.sleep(2)
+
+    try:
+        #print('In')
+        #element = driver.find_element_by_xpath("//div[@class='bal-icon inline-block ml-2']")
+        time.sleep(SCROLL_PAUSE_TIME)
+        element = driver.find_element_by_xpath("//div[@class='bal-table-pagination-btn']")    
+        element.click()
+        time.sleep(3)    
+        #print('click_a')
+    except:
+        #print('failed')
+        pass
+
+    while True:
+      driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+
+        # Wait to load page
+      time.sleep(SCROLL_PAUSE_TIME)
+      try:
+        #element = driver.find_element_by_xpath("//div[@class='bal-icon inline-block ml-2']")
+        time.sleep(SCROLL_PAUSE_TIME)
+        element = driver.find_element_by_xpath("//div[@class='bal-table-pagination-btn']")    
+        element.click()
+        time.sleep(SCROLL_PAUSE_TIME)
+        #print('click')
+        #print(new_height,last_height)
+
+      except:
+        
+        #print('failed')
+        pass
+
+
+        # Calculate new scroll height and compare with last scroll height
+      new_height = driver.execute_script("return document.body.scrollHeight")
+      if new_height == last_height:
+          break
+      last_height = new_height
+
+      #print(new_height,last_height)
+
+    page1 = driver.execute_script('return document.body.innerHTML')
+    soup1 = BeautifulSoup(''.join(page1), 'html.parser')
+
+    web_data=soup1
+    main_list=web_data.find_all("tr",class_= "bg-white z-10 row-bg group cursor-pointer")
+    main_dict=[]
+    import re
+    for i in main_list:
+        record=[]
+        roww=i
+        rowws=str(roww)
+
+        #print(i.contents)
+        ##record.append(i.find( "h1" , class_='AssetItem_symbol__3_Oq5'))
+        ##record.append(i.find_all( "span"))
+        Comp=[]
+        for i in roww.find('div',class_='px-6 py-4 flex items-center').contents[0].contents:
+            try:
+                Comp.append(i.contents[1].contents[0])
+            except:
+                pass    
+        #composition=[i.contents[1].contents[0] for i in roww.find('div',class_='px-6 py-4 flex items-center').contents[0].contents]
+
+        record.append(Comp)
+
+        #aprr=str(roww.find_all('div',class_='value')[1].contents[0])
+        #aprs=aprr[ aprr.find('c0="">') + len('c0="">'):aprr.find('</div>')].strip().replace("\n", '')
+        
+        
+        record.append(roww.find('div',class_='px-6 py-4 text-right font-numeric').contents[0])
+        #liq=str(roww.find_all('div',class_='jsx-3073295382 container vertical ')[-1].contents[0])
+        #liqq=liq[ liq.find('$') + len('$'):vapr.find(']]')]
+    
+        record.append(roww.find('div',class_='px-6 py-4 -mt-1 flex justify-end font-numeric').contents[0])
+
+        #record.append(i.find_all( "div" , class_=liqu )[1].contents[0])
+        main_dict.append(record) 
+        #listmirror=[x for x in i.find_all( "span")]
+        #i.find_all( "span")
+        #print(roww)
+
+        #print(re.search(r'class="AssetItem_symbol__3_Oq5">(.*?)</h1><', str(roww)))
+        #print((i.find_all( "span")))
+    df = pd.DataFrame(main_dict, columns = ['Composition','Pool Value','APR'])
+    #print("Extracted in ",nerve_fail+1,"attempts")
+    #print("Extracted ",len(df)," records")
+    df.to_csv(opname)
+    file_from = opname  
+    file_to = '/'+opname
+    upload_file(file_from,file_to)
+    
+
+
+    return df
+    print("Extracted in ",balancer_fail+1,"attempts")
+    
+
+  except:
+    balancer_fail=balancer_fail+1
+    print('Failed ',balancer_fail,' times')
+    try:
+      initialize()
+      
+    except:
+      pass
+    if balancer_fail<4:
+      balancer_eth()
+    else:
+      print('Error in Balancer')
+      exit()
+
+  return df
+
+def balancer_arb():
+  print("Started Balancer_eth")
+  opname='balancer_arb'+str(date_time_now)+'.csv'
+  url="https://app.balancer.fi/#/"
+  import time
+  global balancer_fail
+  chrome_options.add_argument("--start-maximized")
+  try:
+    
+    chrome_options.add_argument('--no-sandbox') 
+    chrome_options.add_argument('--disable-dev-shm-usage') 
+    driver=webdriver.Chrome(executable_path=os.getenv('CHROME_EXECUTABLE_PATH'), options=chrome_options)
+
+    SCROLL_PAUSE_TIME = 4
+    driver.set_window_size(1024, 600)
+    driver.maximize_window()
+    WebDriverWait(driver, SCROLL_PAUSE_TIME)
+    driver.get(url)
+    time.sleep(2)
+    last_height = 0
+    driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+    time.sleep(2)
+
+    try:
+        #print('In')
+        #element = driver.find_element_by_xpath("//div[@class='bal-icon inline-block ml-2']")
+        time.sleep(SCROLL_PAUSE_TIME)
+        element = driver.find_element_by_xpath("//div[@class='bal-table-pagination-btn']")    
+        element.click()
+        time.sleep(3)    
+        #print('click_a')
+    except:
+        #print('failed')
+        pass
+
+    while True:
+      driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+
+        # Wait to load page
+      time.sleep(SCROLL_PAUSE_TIME)
+      try:
+        #element = driver.find_element_by_xpath("//div[@class='bal-icon inline-block ml-2']")
+        time.sleep(SCROLL_PAUSE_TIME)
+        element = driver.find_element_by_xpath("//div[@class='bal-table-pagination-btn']")    
+        element.click()
+        time.sleep(SCROLL_PAUSE_TIME)
+        #print('click')
+        #print(new_height,last_height)
+
+      except:
+        
+        #print('failed')
+        pass
+
+
+        # Calculate new scroll height and compare with last scroll height
+      new_height = driver.execute_script("return document.body.scrollHeight")
+      if new_height == last_height:
+          break
+      last_height = new_height
+
+      #print(new_height,last_height)
+
+    page1 = driver.execute_script('return document.body.innerHTML')
+    soup1 = BeautifulSoup(''.join(page1), 'html.parser')
+
+    web_data=soup1
+    main_list=web_data.find_all("tr",class_= "bg-white z-10 row-bg group cursor-pointer")
+    main_dict=[]
+    import re
+    for i in main_list:
+        record=[]
+        roww=i
+        rowws=str(roww)
+
+        #print(i.contents)
+        ##record.append(i.find( "h1" , class_='AssetItem_symbol__3_Oq5'))
+        ##record.append(i.find_all( "span"))
+        Comp=[]
+        for i in roww.find('div',class_='px-6 py-4 flex items-center').contents[0].contents:
+            try:
+                Comp.append(i.contents[1].contents[0])
+            except:
+                pass    
+        #composition=[i.contents[1].contents[0] for i in roww.find('div',class_='px-6 py-4 flex items-center').contents[0].contents]
+
+        record.append(Comp)
+
+        #aprr=str(roww.find_all('div',class_='value')[1].contents[0])
+        #aprs=aprr[ aprr.find('c0="">') + len('c0="">'):aprr.find('</div>')].strip().replace("\n", '')
+        
+        
+        record.append(roww.find('div',class_='px-6 py-4 text-right font-numeric').contents[0])
+        #liq=str(roww.find_all('div',class_='jsx-3073295382 container vertical ')[-1].contents[0])
+        #liqq=liq[ liq.find('$') + len('$'):vapr.find(']]')]
+    
+        record.append(roww.find('div',class_='px-6 py-4 -mt-1 flex justify-end font-numeric').contents[0])
+
+        #record.append(i.find_all( "div" , class_=liqu )[1].contents[0])
+        main_dict.append(record) 
+        #listmirror=[x for x in i.find_all( "span")]
+        #i.find_all( "span")
+        #print(roww)
+
+        #print(re.search(r'class="AssetItem_symbol__3_Oq5">(.*?)</h1><', str(roww)))
+        #print((i.find_all( "span")))
+    df = pd.DataFrame(main_dict, columns = ['Composition','Pool Value','APR'])
+    #print("Extracted in ",nerve_fail+1,"attempts")
+    #print("Extracted ",len(df)," records")
+    df.to_csv(opname)
+    file_from = opname  
+    file_to = '/'+opname
+    upload_file(file_from,file_to)
+    
+
+
+    return df
+    print("Extracted in ",balancer_fail+1,"attempts")
+    
+
+  except:
+    balancer_fail=balancer_fail+1
+    print('Failed ',balancer_fail,' times')
+    try:
+      initialize()
+      
+    except:
+      pass
+    if balancer_fail<4:
+      balancer_arb()
+    else:
+      print('Error in Balancer')
+      exit()
+
+  return df
+
+
 
 def ubeswap():
   print("Started Ubeswap")
@@ -1963,6 +2237,40 @@ def All_Crypto():
         Balancer_df=balancer()
         #print(Balancer_df)
         test_op['balancer']=len(Balancer_df)
+      except:
+        print('Failed to Extract balancer')         
+
+  try:
+    print('balancer_eth Try 1')
+    Balancer_eth_df=balancer_eth()
+    #print(Balancer_df)
+    test_op['balancer']=len(Balancer_eth_df_df)
+  except:
+    try:
+      initialize()
+    except:
+      try:
+        print('balancer Try 2')
+        Balancer_eth_df=balancer_eth()
+        #print(Balancer_df)
+        test_op['balancer']=len(Balancer_eth_df)
+      except:
+        print('Failed to Extract balancer')         
+
+  try:
+    print('balancer Try 1')
+    Balancer_arb_df=balancer_arb()
+    #print(Balancer_df)
+    test_op['balancer']=len(Balancer_arb_df)
+  except:
+    try:
+      initialize()
+    except:
+      try:
+        print('balancer Try 2')
+        Balancer_arb_df=balancer_arb()
+        #print(Balancer_df)
+        test_op['balancer']=len(Balancer_arb_df)
       except:
         print('Failed to Extract balancer')         
         
