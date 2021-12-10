@@ -1004,14 +1004,12 @@ def ubeswap():
     content = driver.page_source
     '''
 
-    driver.get(url) 
+    driver.get(url)
     time.sleep(SCROLL_PAUSE_TIME)
     driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
     time.sleep(SCROLL_PAUSE_TIME)
     driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
     time.sleep(SCROLL_PAUSE_TIME)
-    
-
     #optable = str(soup.find( "div" , class_='PaginatedTable__table-full___35BKu' )) 
     #last_height = driver.execute_script("return document.body.scrollHeight")
 
@@ -1021,15 +1019,20 @@ def ubeswap():
 
     web_data=soup1
 
-    main_list=web_data.find_all( "div" , class_='sc-gqdwHF cDPyLo')
+    main_list=web_data.find_all( "div" , class_='sc-cTkOCJ gAvgdh')
     main_dict=[]
     for i in main_list:
         roww=i
         record=[]
         record.append(roww.find('div',class_='sc-cxFLGX cNbTaJ css-1t1fovp').contents[0])
-        record.append(roww.find_all('div',class_='sc-cxFLGX cNbTaJ css-8626y4')[2].contents[0])
-        record.append(roww.find('div',class_='sc-cxFLGX gDnfWa apr css-zhpkf8').contents[0])
-
+        try:
+          record.append(roww.find_all('div',class_='sc-cxFLGX cNbTaJ css-8626y4')[2].contents[0])
+        except:
+          record.append('')
+        try:
+          record.append(roww.find('div',class_='sc-cxFLGX gDnfWa apr css-zhpkf8').contents[0])
+        except:
+          record.append('')
         main_dict.append(record) 
     df = pd.DataFrame(main_dict, columns = ['Pool', 'TVL','APR'])
     #print("Extracted in ",nerve_fail+1,"attempts")
@@ -1716,25 +1719,25 @@ def alpaca():
         record=[]
         roww=i
         rowws=str(roww)
+        record.append(roww.contents[1].contents[0].contents[1].contents[0]) 
+        #print(roww)
+        record.append(roww.contents[1].contents[-1].contents[-1].contents[1].contents[0])
+        record.append(roww.contents[2].contents[0].contents[0].contents[0])   
+        record.append(roww.contents[2].contents[0].contents[1].contents[0])
         try:
-        
-           
-            record.append(roww.contents[1].contents[0].contents[1].contents[0]) 
-            #print(roww)
-            record.append(roww.contents[1].contents[-1].contents[-1].contents[1].contents[0])
-            record.append(roww.contents[2].contents[0].contents[0].contents[0])   
-            record.append(roww.contents[2].contents[0].contents[1].contents[0])
-            try:
-              record.append(roww.contents[3].contents[-1].contents[3].contents[-1].contents[-1].contents[-1].contents[-1].contents[0].contents[0])
-            except:
-              record.append(roww.contents[3].contents[-1].find_all('span',class_='c-value')[0].contents[0])
-            main_dict.append(record) 
+          record.append(roww.contents[3].contents[-1].contents[3].contents[-1].contents[-1].contents[-1].contents[-1].contents[0].contents[0])
+          record.append(roww.contents[3].contents[-1].contents[3].contents[-1].contents[-1].contents[-1].contents[-2].contents[0].contents[0])
+        except:
+          record.append(roww.contents[3].contents[-1].find_all('span',class_='c-value')[0].contents[0])
+          record.append(roww.contents[3].contents[-1].find_all('span',class_='c-name')[0].contents[0])
+        main_dict.append(record) 
+      
         except:
             pass
     #print(main_dict)
 
 
-    df = pd.DataFrame(main_dict, columns = ['Pool Name', 'Liquidity','APY','APY_Cross','Borrowing Interest'])
+    df = pd.DataFrame(main_dict, columns = ['Pool Name', 'Liquidity','APY','APY_Cross','Borrowing Interest','BorrowinAsset'])
     df=df.drop_duplicates(subset=['Pool Name'])
     df.to_csv(opname)
     file_from = opname  
