@@ -2258,7 +2258,7 @@ def All_Crypto():
         print('Failed to Extract balancer')         
 
   try:
-    print('balancer Try 1')
+    print('balancer_arb Try 1')
     Balancer_arb_df=balancer_arb()
     #print(Balancer_df)
     test_op['balancer']=len(Balancer_arb_df)
