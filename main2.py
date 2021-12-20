@@ -117,8 +117,8 @@ def initialize():
   chrome_options.add_argument('--disable-dev-shm-usage')
   driver = webdriver.Chrome('chromedriver',chrome_options=chrome_options)
 
-#TOKEN = "PA7Cl2jA9zcAAAAAAAAAAUfSfSNFhb8Lt6zhstP9DqSzkdg8aIEixjZ0o5K62lyO"
-TOKEN= "D9kbx5Cwjw0AAAAAAAAAAa7JeHpbCvlVs60FIOmrNFRRQ5_CjsoHqQ5QMJV0VrIr"
+TOKEN = "PA7Cl2jA9zcAAAAAAAAAAUfSfSNFhb8Lt6zhstP9DqSzkdg8aIEixjZ0o5K62lyO"
+#TOKEN= "D9kbx5Cwjw0AAAAAAAAAAa7JeHpbCvlVs60FIOmrNFRRQ5_CjsoHqQ5QMJV0VrIr"
 
 def connect_to_dropbox():
   try:
@@ -1302,6 +1302,12 @@ def ubeswap():
 
     page1 = driver.execute_script('return document.body.innerHTML')
     soup1 = BeautifulSoup(''.join(page1), 'html.parser')
+    fnameh='ubeswap'+str(i)+'.html'
+    text_file = open(fnameh, "w")
+    text_file.write(soup1.prettify())
+    text_file.close()    
+    fnameh='ubeswap'+str(i)+'.html'
+    upload_file(fnameh,'/'+fnameh) 
 
     web_data=soup1
 
@@ -1488,7 +1494,7 @@ def pancake():
     text_file.close()     
     
     print('HHTML Made')
-    #upload_file('PancakeSoup.html','/PancakeSoup.html')
+    upload_file('PancakeSoup.html','/PancakeSoup.html')
     web_data=soup1
     main_list=web_data.find_all("tr",class_= "sc-iNhCjk fZwsUA")
     print(len(main_list),'Pancake Size')
@@ -1612,7 +1618,7 @@ def traderjoe():
       text_file.write(soup1.prettify())
       text_file.close()    
       fnameh='joesoup'+str(i)+'.html'
-      #upload_file(fnameh,'/'+fnameh) 
+      upload_file(fnameh,'/'+fnameh) 
       print('HTML Made')
 
       
@@ -1707,6 +1713,14 @@ def coingecko():
 
     page1 = driver.execute_script('return document.body.innerHTML')
     soup1 = BeautifulSoup(''.join(page1), 'html.parser')
+    fnameh='coingeko'+str(i)+'.html'
+    text_file = open(fnameh, "w")
+    text_file.write(soup1.prettify())
+    text_file.close()    
+    fnameh='coingecko'+str(i)+'.html'
+    upload_file(fnameh,'/'+fnameh) 
+    
+    
     web_data=soup1
     main_list=web_data.find('div',class_='contract-table').find_all("tr")[1:]
     #print(main_list)
@@ -1894,6 +1908,14 @@ def pangolin():
     soup1 = BeautifulSoup(str(soup1).replace('class="sc-gzVnrw bhXWHA"></span>','class="sc-gzVnrw bhXWHA">'))
     soup1 = BeautifulSoup(str(soup1).replace('<span class="sc-gzVnrw bhXWHA"','</span><span class="sc-gzVnrw bhXWHA"'))
 
+    fnameh='pangolin'+str(i)+'.html'
+    text_file = open(fnameh, "w")
+    text_file.write(soup1.prettify())
+    text_file.close()    
+    fnameh='pangolin'+str(i)+'.html'
+    upload_file(fnameh,'/'+fnameh) 
+
+
     web_data=soup1
     main_list=web_data.find_all("span",class_= "sc-gzVnrw bhXWHA")
     main_dict=[]
@@ -2001,6 +2023,14 @@ def alpaca():
       
       page1 = driver.execute_script('return document.body.innerHTML')
       soup1 = BeautifulSoup(''.join(page1), 'html.parser')
+      fnameh='alpaca'+str(i)+'.html'
+      text_file = open(fnameh, "w")
+      text_file.write(soup1.prettify())
+      text_file.close()    
+      fnameh='alpaca'+str(i)+'.html'
+      upload_file(fnameh,'/'+fnameh) 
+
+
       web_data=soup1
       
       main_list=web_data.find_all("div",class_= "ant-table-container")
