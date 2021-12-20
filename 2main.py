@@ -63,6 +63,7 @@ global traderjoe_fail
 global coingecko_fail
 global pangolin_fail
 global alpaca_fail
+global ubeswap_fail
 
 nerve_fail=0
 sushi_fail=0
@@ -77,6 +78,7 @@ traderjoe_fail=0
 coingecko_fail=0
 pangolin_fail=0
 alpaca_fail=0
+ubeswap_fail=0
 
 date_time_now=str(datetime.now(pytz.timezone('Hongkong')))[:16]
 
@@ -118,7 +120,7 @@ def initialize():
   driver = webdriver.Chrome('chromedriver',chrome_options=chrome_options)
 
 TOKEN = "PA7Cl2jA9zcAAAAAAAAAAUfSfSNFhb8Lt6zhstP9DqSzkdg8aIEixjZ0o5K62lyO"
-#TOKEN= "D9kbx5Cwjw0AAAAAAAAAAa7JeHpbCvlVs60FIOmrNFRRQ5_CjsoHqQ5QMJV0VrIr"
+TOKEN= "D9kbx5Cwjw0AAAAAAAAAAa7JeHpbCvlVs60FIOmrNFRRQ5_CjsoHqQ5QMJV0VrIr"
 
 def connect_to_dropbox():
   try:
@@ -1717,7 +1719,7 @@ def coingecko():
     text_file = open(fnameh, "w")
     text_file.write(soup1.prettify())
     text_file.close()    
-    fnameh='coingecko'+str(i)+'.html'
+    fnameh='coingecko'+'.html'
     upload_file(fnameh,'/'+fnameh) 
     
     
@@ -1885,8 +1887,8 @@ def pangolin():
         element.click()
         time.sleep(6)    
         print('click_a')
-    except:
-        #print('failed')
+    except Exception as Exx:
+        print('failed', Exx)
         pass
 
     while True:
@@ -1960,9 +1962,9 @@ def pangolin():
     print("Extracted in ",pangolin_fail+1,"attempts")
     
 
-  except:
+  except Exception as Exxx:
     pangolin_fail=pangolin_fail+1
-    print('Failed ',pangolin_fail,' times')
+    print('Failed ',pangolin_fail,' times', Exxx)
     try:
       initialize()
       
@@ -2184,12 +2186,12 @@ def All_Crypto():
     Ubeswap_df=ubeswap()
     #print(Ubeswap_df)
     test_op['ubeswap']=len(Ubeswap_df)
-  except Exception as Exx:
+  except:
     try:
       initialize()
     except:
       try:
-        print('ubeswap Try 2', Exx)
+        print('ubeswap Try 2')
         Ubeswap_df=ubeswap()
         #print(Ubeswap_df)
         test_op['ubeswap']=len(Ubeswap_df)
@@ -2258,9 +2260,9 @@ def All_Crypto():
   except:
     try:
       initialize()
-    except Exception as Exx:
+    except:
       try:
-        print('coingecko Try 2', Exx)
+        print('coingecko Try 2')
         Coingecko_df=coingecko()
         #print(Coingecko_df)
         test_op['coingecko']=len(Coingecko_df)        
@@ -2272,13 +2274,12 @@ def All_Crypto():
     Pangolin_df=pangolin()
     #print(Pangolin_df)
     test_op['pangolin']=len(Pangolin_df)
-  except Exception as Exx:
+  except:
     try:
-      print(Exx)
       initialize()
-    except Exception as Exx:
+    except:
       try:
-        print('pangolin Try 2', Exx)
+        print('pangolin Try 2')
         Pangolin_df=pangolin()
         #print(Pangolin_df)
         test_op['pangolin']=len(Pangolin_df)
