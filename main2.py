@@ -270,9 +270,9 @@ def nerve_fi():
     print("Extracted in ",nerve_fail+1,"attempts")
     print("Extracted ",len(df)," records")
 
-  except:
+  except Exception as xx:
     nerve_fail=nerve_fail+1
-    print('Failed ',nerve_fail,' times')
+    print('Failed ',nerve_fail,' times',xx)
     try:
       initialize()
     except:
