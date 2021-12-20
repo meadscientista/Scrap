@@ -118,7 +118,7 @@ def initialize():
   driver = webdriver.Chrome('chromedriver',chrome_options=chrome_options)
 
 TOKEN = "PA7Cl2jA9zcAAAAAAAAAAUfSfSNFhb8Lt6zhstP9DqSzkdg8aIEixjZ0o5K62lyO"
-TOKEN= "D9kbx5Cwjw0AAAAAAAAAAa7JeHpbCvlVs60FIOmrNFRRQ5_CjsoHqQ5QMJV0VrIr"
+#TOKEN= "D9kbx5Cwjw0AAAAAAAAAAa7JeHpbCvlVs60FIOmrNFRRQ5_CjsoHqQ5QMJV0VrIr"
 
 def connect_to_dropbox():
   try:
@@ -216,7 +216,8 @@ def nerve_fi():
   try:
     print("Running")
     SCROLL_PAUSE_TIME = 3
-    driver = webdriver.Chrome('chromedriver',chrome_options=chrome_options)
+    driver=webdriver.Chrome(executable_path=os.getenv('CHROME_EXECUTABLE_PATH'), options=chrome_options)
+    opname='NerveFi'+str(date_time_now)+'.csv'
     driver.get(url)
     time.sleep(10)
     
@@ -259,7 +260,13 @@ def nerve_fi():
       record.append(i.find_all( "div" , class_=liqu )[1].contents[0])
       main_dict.append(record) 
     df = pd.DataFrame(main_dict, columns = ['Pool', 'TVL','APR'])
-    df.to_csv('Nerve_Fi.csv')
+
+    df.to_csv(opname)
+    file_from = opname  
+    file_to = '/'+opname
+    upload_file(file_from,file_to)      
+    
+    #df.to_csv('Nerve_Fi.csv')
     print("Extracted in ",nerve_fail+1,"attempts")
     print("Extracted ",len(df)," records")
 
@@ -289,7 +296,7 @@ def sushi_farm():
    
   try:
     print('Running Sushi')
-    driver = webdriver.Chrome('chromedriver',chrome_options=chrome_options)
+    driver=webdriver.Chrome(executable_path=os.getenv('CHROME_EXECUTABLE_PATH'), options=chrome_options)
     driver.get(url)
 
     time.sleep(10)
@@ -358,7 +365,8 @@ def adamant():
   import time
   global adm_fail
   try:    
-    driver = webdriver.Chrome('chromedriver',chrome_options=chrome_options)
+    driver=webdriver.Chrome(executable_path=os.getenv('CHROME_EXECUTABLE_PATH'), options=chrome_options)
+    opname='Adamant'+str(date_time_now)+'.csv'
     driver.get(url)
     SCROLL_PAUSE_TIME = 3
 
@@ -403,8 +411,12 @@ def adamant():
       record.append(i.find( "div" , class_=apr_div ).find( "span" , class_='apy' ).contents[0])
       main_dict.append(record) 
     df = pd.DataFrame(main_dict, columns = ['Pool', 'TVL','APR'])
-
-    df.to_excel('Adament.xlsx')
+    #df.to_excel('Adamant.xlsx')
+    df.to_csv(opname)
+    file_from = opname  
+    file_to = '/'+opname
+    upload_file(file_from,file_to)    
+    
     return df
     print("Extracted in ",adm_fail+1,"attempts")
     
@@ -414,7 +426,7 @@ def adamant():
     print('Failed ',adm_fail,' times')
     try:
       initialize()
-      
+     
     except:
       pass
     if adm_fail<4:
@@ -1290,6 +1302,12 @@ def ubeswap():
 
     page1 = driver.execute_script('return document.body.innerHTML')
     soup1 = BeautifulSoup(''.join(page1), 'html.parser')
+    fnameh='ubeswap'+str(i)+'.html'
+    text_file = open(fnameh, "w")
+    text_file.write(soup1.prettify())
+    text_file.close()    
+    fnameh='ubeswap'+str(i)+'.html'
+    upload_file(fnameh,'/'+fnameh) 
 
     web_data=soup1
 
@@ -1476,7 +1494,7 @@ def pancake():
     text_file.close()     
     
     print('HHTML Made')
-    #upload_file('PancakeSoup.html','/PancakeSoup.html')
+    upload_file('PancakeSoup.html','/PancakeSoup.html')
     web_data=soup1
     main_list=web_data.find_all("tr",class_= "sc-iNhCjk fZwsUA")
     print(len(main_list),'Pancake Size')
@@ -1695,6 +1713,14 @@ def coingecko():
 
     page1 = driver.execute_script('return document.body.innerHTML')
     soup1 = BeautifulSoup(''.join(page1), 'html.parser')
+    fnameh='coingeko'+str(i)+'.html'
+    text_file = open(fnameh, "w")
+    text_file.write(soup1.prettify())
+    text_file.close()    
+    fnameh='coingecko'+str(i)+'.html'
+    upload_file(fnameh,'/'+fnameh) 
+    
+    
     web_data=soup1
     main_list=web_data.find('div',class_='contract-table').find_all("tr")[1:]
     #print(main_list)
@@ -1882,6 +1908,14 @@ def pangolin():
     soup1 = BeautifulSoup(str(soup1).replace('class="sc-gzVnrw bhXWHA"></span>','class="sc-gzVnrw bhXWHA">'))
     soup1 = BeautifulSoup(str(soup1).replace('<span class="sc-gzVnrw bhXWHA"','</span><span class="sc-gzVnrw bhXWHA"'))
 
+    fnameh='pangolin'+str(i)+'.html'
+    text_file = open(fnameh, "w")
+    text_file.write(soup1.prettify())
+    text_file.close()    
+    fnameh='pangolin'+str(i)+'.html'
+    upload_file(fnameh,'/'+fnameh) 
+
+
     web_data=soup1
     main_list=web_data.find_all("span",class_= "sc-gzVnrw bhXWHA")
     main_dict=[]
@@ -1989,6 +2023,14 @@ def alpaca():
       
       page1 = driver.execute_script('return document.body.innerHTML')
       soup1 = BeautifulSoup(''.join(page1), 'html.parser')
+      fnameh='alpaca'+str(i)+'.html'
+      text_file = open(fnameh, "w")
+      text_file.write(soup1.prettify())
+      text_file.close()    
+      fnameh='alpaca'+str(i)+'.html'
+      upload_file(fnameh,'/'+fnameh) 
+
+
       web_data=soup1
       
       main_list=web_data.find_all("div",class_= "ant-table-container")
@@ -2046,8 +2088,45 @@ def alpaca():
 
 def All_Crypto():
   #All_websites = pd.DataFrame(columns = ['Pool', 'TVL','APR','source'])
-  test_op={'mirror':0,'convex':0,'raydium':0,'balancer':0,'ubeswap':0,'traderjoe':0,'pancake':0,'sushi_nokashi_farm':0,'coingecko':0,'pangolin':0,'alpaca':0}
-  '''
+  test_op={'nervefi':0,'adamant':0,'mirror':0,'convex':0,'raydium':0,'balancer':0,'ubeswap':0,'traderjoe':0,'pancake':0,'sushi_nokashi_farm':0,'coingecko':0,'pangolin':0,'alpaca':0}
+
+
+  try:
+    print('Nerve_Fi Try 1')
+    Nerve_df=nerve_fi()
+    #print(Mirror_df)
+    test_op['nervefi']=len(Nerve_df)
+  except:
+    try:
+      initialize()
+    except:
+      try:
+        print('Mirror Try 2')
+        Nerve_df=nerve_fi()
+        test_op['nervefi']=len(Nerve_df)
+        #print(Mirror_df)
+      except:
+        print('Failed to Extract Mirror')    
+
+  try:
+    print('Adamant Try 1')
+    Adamant_df=adamant()
+    #print(Mirror_df)
+    test_op['adamant']=len(Adamant_df)
+  except:
+    try:
+      initialize()
+    except:
+      try:
+        print('Adamant Try 2')
+        Adamant_df=adamant()
+        test_op['adamant']=len(Adamant_df)
+        #print(Mirror_df)
+      except:
+        print('Failed to Extract Adamant')    
+
+  
+  
   try:
     print('Mirror Try 1')
     Mirror_df=mirror()
@@ -2116,7 +2195,7 @@ def All_Crypto():
         test_op['ubeswap']=len(Ubeswap_df)
       except:
         print('Failed to Extract ubeswap')    
-  '''
+  
   try:
     print('traderjoe Try 1')
     Traderjoe_df=traderjoe()
@@ -2304,8 +2383,10 @@ if(len(Error_df)>0):
   file_to = '/'+Erro_df_Name
   upload_file(file_from,file_to)
 
+'''
 if(len(missing)>0):
   Failure_Email(missing)
+'''
 
 print(missing,'\n')
 
