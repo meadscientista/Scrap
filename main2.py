@@ -117,7 +117,7 @@ def initialize():
   chrome_options.add_argument('--disable-dev-shm-usage')
   driver = webdriver.Chrome('chromedriver',chrome_options=chrome_options)
 
-#TOKEN = "PA7Cl2jA9zcAAAAAAAAAAUfSfSNFhb8Lt6zhstP9DqSzkdg8aIEixjZ0o5K62lyO"
+TOKEN = "PA7Cl2jA9zcAAAAAAAAAAUfSfSNFhb8Lt6zhstP9DqSzkdg8aIEixjZ0o5K62lyO"
 TOKEN= "D9kbx5Cwjw0AAAAAAAAAAa7JeHpbCvlVs60FIOmrNFRRQ5_CjsoHqQ5QMJV0VrIr"
 
 def connect_to_dropbox():
@@ -216,7 +216,7 @@ def nerve_fi():
   try:
     print("Running")
     SCROLL_PAUSE_TIME = 3
-    driver = webdriver.Chrome('chromedriver',chrome_options=chrome_options)
+    driver=webdriver.Chrome(executable_path=os.getenv('CHROME_EXECUTABLE_PATH'), options=chrome_options)
     opname='NerveFi'+str(date_time_now)+'.csv'
     driver.get(url)
     time.sleep(10)
@@ -270,9 +270,9 @@ def nerve_fi():
     print("Extracted in ",nerve_fail+1,"attempts")
     print("Extracted ",len(df)," records")
 
-  except Exception as xx:
+  except:
     nerve_fail=nerve_fail+1
-    print('Failed ',nerve_fail,' times',xx)
+    print('Failed ',nerve_fail,' times')
     try:
       initialize()
     except:
@@ -296,7 +296,7 @@ def sushi_farm():
    
   try:
     print('Running Sushi')
-    driver = webdriver.Chrome('chromedriver',chrome_options=chrome_options)
+    driver=webdriver.Chrome(executable_path=os.getenv('CHROME_EXECUTABLE_PATH'), options=chrome_options)
     driver.get(url)
 
     time.sleep(10)
@@ -365,7 +365,7 @@ def adamant():
   import time
   global adm_fail
   try:    
-    driver = webdriver.Chrome('chromedriver',chrome_options=chrome_options)
+    driver=webdriver.Chrome(executable_path=os.getenv('CHROME_EXECUTABLE_PATH'), options=chrome_options)
     opname='Adamant'+str(date_time_now)+'.csv'
     driver.get(url)
     SCROLL_PAUSE_TIME = 3
