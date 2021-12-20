@@ -1753,9 +1753,9 @@ def coingecko():
     print("Extracted in ",coingecko_fail+1,"attempts")
     
 
-  except:
+  except Exception as Exx:
     coingecko_fail=coingecko_fail+1
-    print('Failed ',coingecko_fail,' times')
+    print('Failed ',coingecko_fail,' times' , Exx)
     try:
       initialize()
       
@@ -2090,7 +2090,7 @@ def All_Crypto():
   #All_websites = pd.DataFrame(columns = ['Pool', 'TVL','APR','source'])
   test_op={'nervefi':0,'adamant':0,'mirror':0,'convex':0,'raydium':0,'balancer':0,'ubeswap':0,'traderjoe':0,'pancake':0,'sushi_nokashi_farm':0,'coingecko':0,'pangolin':0,'alpaca':0}
 
-
+  '''
   try:
     print('Nerve_Fi Try 1')
     Nerve_df=nerve_fi()
@@ -2177,25 +2177,25 @@ def All_Crypto():
         test_op['raydium']=len(Raydium_df)
       except:
         print('Failed to Extract raydium')    
-     
+  '''   
 
   try:
     print('ubeswap Try 1')
     Ubeswap_df=ubeswap()
     #print(Ubeswap_df)
     test_op['ubeswap']=len(Ubeswap_df)
-  except:
+  except Exception as Exx:
     try:
       initialize()
     except:
       try:
-        print('ubeswap Try 2')
+        print('ubeswap Try 2', Exx)
         Ubeswap_df=ubeswap()
         #print(Ubeswap_df)
         test_op['ubeswap']=len(Ubeswap_df)
       except:
         print('Failed to Extract ubeswap')    
-  
+  '''
   try:
     print('traderjoe Try 1')
     Traderjoe_df=traderjoe()
@@ -2249,7 +2249,7 @@ def All_Crypto():
         test_op['sushi_nokashi_farm']=len(Sushi_nokashi_farm_df)        
       except:
         print('Failed to Extract sushi_nokashi_farm')    
-
+  '''
   try:
     print('coingecko Try 1')
     Coingecko_df=coingecko()
@@ -2258,9 +2258,9 @@ def All_Crypto():
   except:
     try:
       initialize()
-    except:
+    except Exception as Exx:
       try:
-        print('coingecko Try 2')
+        print('coingecko Try 2', Exx)
         Coingecko_df=coingecko()
         #print(Coingecko_df)
         test_op['coingecko']=len(Coingecko_df)        
@@ -2272,12 +2272,13 @@ def All_Crypto():
     Pangolin_df=pangolin()
     #print(Pangolin_df)
     test_op['pangolin']=len(Pangolin_df)
-  except:
+  except Exception as Exx:
     try:
+      print(Exx)
       initialize()
-    except:
+    except Exception as Exx:
       try:
-        print('pangolin Try 2')
+        print('pangolin Try 2', Exx)
         Pangolin_df=pangolin()
         #print(Pangolin_df)
         test_op['pangolin']=len(Pangolin_df)
@@ -2285,7 +2286,7 @@ def All_Crypto():
       except:
         print('Failed to Extract pangolin') 
  
-  
+  '''
   try:
     print('alpaca Try 1')
     Alpaca_df=alpaca()
@@ -2320,7 +2321,7 @@ def All_Crypto():
         test_op['balancer']=len(Balancer_df)
       except:
         print('Failed to Extract balancer')         
-
+    
   try:
     print('balancer_eth Try 1')
     Balancer_eth_df=balancer_eth()
@@ -2354,7 +2355,7 @@ def All_Crypto():
         test_op['balancer']=len(Balancer_arb_df)
       except:
         print('Failed to Extract balancer')         
-        
+  '''    
         
     
   return test_op
