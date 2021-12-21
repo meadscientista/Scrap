@@ -63,6 +63,7 @@ global traderjoe_fail
 global coingecko_fail
 global pangolin_fail
 global alpaca_fail
+global ubeswap_fail
 
 nerve_fail=0
 sushi_fail=0
@@ -77,6 +78,7 @@ traderjoe_fail=0
 coingecko_fail=0
 pangolin_fail=0
 alpaca_fail=0
+ubeswap_fail=0
 
 date_time_now=str(datetime.now(pytz.timezone('Hongkong')))[:16]
 
@@ -1273,14 +1275,14 @@ def ubeswap():
   url="https://app.ubeswap.org/#/farm"
   import time
   global ubeswap_fail
-  chrome_options.add_argument("--start-maximized")
+  
   try:
-       
+    chrome_options.add_argument("--start-maximized")
     chrome_options.add_argument('--no-sandbox') 
     chrome_options.add_argument('--disable-dev-shm-usage') 
     driver=webdriver.Chrome(executable_path=os.getenv('CHROME_EXECUTABLE_PATH'), options=chrome_options)
 
-    SCROLL_PAUSE_TIME = 3
+    SCROLL_PAUSE_TIME = 4
 
 
     WebDriverWait(driver, SCROLL_PAUSE_TIME)
@@ -1302,33 +1304,42 @@ def ubeswap():
 
     page1 = driver.execute_script('return document.body.innerHTML')
     soup1 = BeautifulSoup(''.join(page1), 'html.parser')
-    fnameh='ubeswap'+str(i)+'.html'
+    fnameh='ubeswap'+'.html'
     text_file = open(fnameh, "w")
     text_file.write(soup1.prettify())
     text_file.close()    
-    fnameh='ubeswap'+str(i)+'.html'
+    fnameh='ubeswap'+'.html'
     upload_file(fnameh,'/'+fnameh) 
 
     web_data=soup1
+    ###sc-ihsTQM hnqjkl     sc-cTkOCJ gAvgdh
 
-    main_list=web_data.find_all( "div" , class_='sc-cTkOCJ gAvgdh')
+    main_list=web_data.find_all( "div" , class_='sc-ihsTQM hnqjkl')
     main_dict=[]
     for i in main_list:
         roww=i
         record=[]
+        #print(i,'\n')
+        #print('_____________________\n')
         try:
-          record.append(roww.find('div',class_='sc-cxFLGX cNbTaJ css-1t1fovp').contents[0])
+          #sc-lmoMya fAYcvI css-1t1fovp     sc-cxFLGX cNbTaJ css-1t1fovp  
+          record.append(roww.find('div',class_='sc-lmoMya fAYcvI css-1t1fovp').contents[0].strip())
+        except:
+          #print(roww.find('div',class_='sc-cxFLGX cNbTaJ css-1t1fovp'))
+          record.append('')
+        try:
+          #sc-cxFLGX cNbTaJ css-8626y4  sc-lmoMya cDMuHr apr css-zhpkf8
+          record.append(roww.find_all('div',class_='sc-lmoMya fAYcvI css-8626y4')[2].contents[0].strip())
         except:
           record.append('')
         try:
-          record.append(roww.find_all('div',class_='sc-cxFLGX cNbTaJ css-8626y4')[2].contents[0])
+          #sc-lmoMya fAYcvI css-8626y4  sc-cxFLGX gDnfWa apr css-zhpkf8
+          record.append(roww.find('div',class_='sc-lmoMya fAYcvI css-8626y4').contents[1].contents[0].strip())
         except:
           record.append('')
-        try:
-          record.append(roww.find('div',class_='sc-cxFLGX gDnfWa apr css-zhpkf8').contents[0])
-        except:
-          record.append('')
-        main_dict.append(record) 
+        print(len(record[0]))
+        if(len(record[0])>1):
+            main_dict.append(record) 
     df = pd.DataFrame(main_dict, columns = ['Pool', 'TVL','APR'])
     #print("Extracted in ",nerve_fail+1,"attempts")
     print("Extracted ",len(df)," records")
@@ -1342,9 +1353,9 @@ def ubeswap():
     print("Extracted in ",ubeswap_fail+1,"attempts")
     
 
-  except:
+  except Exception as Exx:
     ubeswap_fail=ubeswap_fail+1
-    print('Failed ',ubeswap_fail,' times')
+    print('Failed ',ubeswap_fail,' times', Exx)
     try:
       initialize()
       
@@ -1496,7 +1507,8 @@ def pancake():
     print('HHTML Made')
     upload_file('PancakeSoup.html','/PancakeSoup.html')
     web_data=soup1
-    main_list=web_data.find_all("tr",class_= "sc-iNhCjk fZwsUA")
+    #sc-kNnZrs lEjHl    sc-iNhCjk fZwsUA
+    main_list=web_data.find_all("tr",class_= "sc-kNnZrs lEjHl")
     print(len(main_list),'Pancake Size')
     main_dict=[]
     import re
@@ -1517,7 +1529,8 @@ def pancake():
             except:
                 record.append('')
             try:
-                record.append(roww.find('div', class_="sc-jSFjdj sc-gKAaRy sc-eSRwjH kJmatq togOu lnhkkx").contents[0].strip())
+                #sc-jSFjdj sc-gKAaRy sc-khIimk kJmatq togOu gNMCgZ      sc-jSFjdj sc-gKAaRy sc-eSRwjH kJmatq togOu lnhkkx
+                record.append(roww.find('div', class_="sc-jSFjdj sc-gKAaRy sc-khIimk kJmatq togOu gNMCgZ").contents[0].strip())
             except:
                 record.append('')       
             try:
@@ -1525,7 +1538,8 @@ def pancake():
             except:
                 record.append('')
             try:
-                record.append(roww.find('div',class_='sc-cBsszO eKkVhu').contents[0].strip())
+                ##sc-eByPHW nwnCv       sc-cBsszO eKkVhu
+                record.append(roww.find('div',class_='sc-eByPHW nwnCv').contents[0].strip())
             except:
                 record.append('')  
 
@@ -1582,11 +1596,11 @@ def traderjoe():
   url="https://traderjoexyz.com/#/farm"
   import time
   global traderjoe_fail
-  
+  main_dict=[]
   try:
     #chrome_options = webdriver.ChromeOptions() 
     chrome_options.add_argument("--start-maximized")
-    main_dict=[]
+    
     chrome_options.add_argument('--no-sandbox') 
     chrome_options.add_argument('--disable-dev-shm-usage') 
     driver=webdriver.Chrome(executable_path=os.getenv('CHROME_EXECUTABLE_PATH'), options=chrome_options)
@@ -1597,7 +1611,7 @@ def traderjoe():
     time.sleep(2)
     last_height = 0
     import time
-    for i in range(1,8):
+    for i in range(1,9):
       time.sleep(SCROLL_PAUSE_TIME)
       try:
             driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
@@ -1624,26 +1638,27 @@ def traderjoe():
       
       
       web_data=soup1
-      #sc-gNJABI jgByc
-      main_list=web_data.find_all("div",class_= "sc-kNBZmU fcuCFn")
-      print(len(main_list))
+      #sc-gNJABI jgByc   sc-kNBZmU fcuCFn       sc-kNBZmU hwUZuk
+      main_list=web_data.find_all("div",class_= "sc-kNBZmU hwUZuk")
+      print(len(main_list), i)
       #print(len(main_list))
-      for i in main_list:
+      for k in main_list:
         record=[]
-        roww=i
+        roww=k
         rowws=str(roww)
         try:                
             record.append(roww.find('div',class_='sc-bZQynM jmMmRU css-r99fas').contents[0]) 
             #print(roww)
-            record.append(roww.find_all('div',class_='sc-bZQynM dkmKkO css-1ecm0so')[0].contents[0])
-            record.append(roww.find_all('div',class_='sc-bZQynM dkmKkO css-1ecm0so')[1].contents[0])   
-            record.append(roww.find_all('div',class_='sc-bZQynM dkmKkO css-1ecm0so')[2].contents[0])
+            record.append(roww.find_all('div',class_='sc-bZQynM dkmKkO css-1ecm0so')[0].contents[0].strip())
+            record.append(roww.find_all('div',class_='sc-bZQynM dkmKkO css-1ecm0so')[1].contents[0].strip())   
+            record.append(roww.find_all('div',class_='sc-bZQynM dkmKkO css-1ecm0so')[2].contents[0].strip())
             main_dict.append(record) 
+            print('\n',record,'\n')
         except Exception as Exx:
             print(Exx)
             pass
         
-
+    print('\n Full',main_dict)
     df = pd.DataFrame(main_dict, columns = ['Pool Name', 'Pool Weight','Liquidity','APR'])
     df=df.drop_duplicates(subset=['Pool Name'])
     df.to_csv('Trader Joe.csv')
@@ -1688,6 +1703,7 @@ def coingecko():
   try:
     
     #chrome_options = webdriver.ChromeOptions() 
+    print('In 1')
     main_dict=[]
     chrome_options.add_argument('--no-sandbox') 
     chrome_options.add_argument('--disable-dev-shm-usage') 
@@ -1701,7 +1717,9 @@ def coingecko():
 
 
     try:
+        print('In 2')
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight-1000);")
+        print('Scrolled to bottom')
         time.sleep(SCROLL_PAUSE_TIME)
         #="coin-tickers-tab.perpetualsButton"
         gts="//div[@data-target='coin-tickers-tab.perpetualsButton']"
@@ -1713,31 +1731,33 @@ def coingecko():
 
     page1 = driver.execute_script('return document.body.innerHTML')
     soup1 = BeautifulSoup(''.join(page1), 'html.parser')
-    fnameh='coingeko'+str(i)+'.html'
+    fnameh='coingecko'+'.html'
     text_file = open(fnameh, "w")
     text_file.write(soup1.prettify())
     text_file.close()    
-    fnameh='coingecko'+str(i)+'.html'
+    fnameh='coingecko'+'.html'
     upload_file(fnameh,'/'+fnameh) 
     
     
     web_data=soup1
-    main_list=web_data.find('div',class_='contract-table').find_all("tr")[1:]
-    #print(main_list)
-    for i in main_list:
-        record=[]
-        roww=i
-        rowws=str(roww)
-        record.append(roww.contents[1].contents[3].contents[0]) 
-        #print(roww)
-        record.append(roww.contents[3].contents[1].contents[0])
-        record.append(roww.contents[5].contents[0].strip())   
-        record.append(roww.contents[11].contents[0].strip())
-        record.append(roww.contents[15].contents[1].contents[0].strip())
-        
-        
-        main_dict.append(record) 
-
+    try:
+      
+        main_list=web_data.find('div',class_='contract-table').find_all("tr")[1:]
+        print(len(main_list))
+        for i in main_list:
+            record=[]
+            roww=i
+            rowws=str(roww)
+            record.append(roww.contents[1].contents[3].contents[0]) 
+            #print(roww)
+            record.append(roww.contents[3].contents[1].contents[0])
+            record.append(roww.contents[5].contents[0].strip())   
+            record.append(roww.contents[11].contents[0].strip())
+            record.append(roww.contents[15].contents[1].contents[0].strip())       
+            
+            main_dict.append(record) 
+    except:
+        pass
 
     df = pd.DataFrame(main_dict, columns = ['Exchange', 'Symbol','Price','Basis','Funding Rate'])
 
@@ -1753,9 +1773,9 @@ def coingecko():
     print("Extracted in ",coingecko_fail+1,"attempts")
     
 
-  except:
+  except Exception as Exx:
     coingecko_fail=coingecko_fail+1
-    print('Failed ',coingecko_fail,' times')
+    print('Failed ',coingecko_fail,' times' , Exx)
     try:
       initialize()
       
@@ -1858,9 +1878,9 @@ def pangolin():
   url="https://app.pangolin.exchange/#"
   import time
   global pangolin_fail
-  chrome_options.add_argument("--start-maximized")
+  
   try:
-    
+    chrome_options.add_argument("--start-maximized")
     chrome_options.add_argument('--no-sandbox') 
     chrome_options.add_argument('--disable-dev-shm-usage') 
     driver=webdriver.Chrome(executable_path=os.getenv('CHROME_EXECUTABLE_PATH'), options=chrome_options)
@@ -1885,8 +1905,8 @@ def pangolin():
         element.click()
         time.sleep(6)    
         print('click_a')
-    except:
-        #print('failed')
+    except Exception as Exx:
+        print('failed', Exx)
         pass
 
     while True:
@@ -1908,11 +1928,11 @@ def pangolin():
     soup1 = BeautifulSoup(str(soup1).replace('class="sc-gzVnrw bhXWHA"></span>','class="sc-gzVnrw bhXWHA">'))
     soup1 = BeautifulSoup(str(soup1).replace('<span class="sc-gzVnrw bhXWHA"','</span><span class="sc-gzVnrw bhXWHA"'))
 
-    fnameh='pangolin'+str(i)+'.html'
+    fnameh='pangolin'+'.html'
     text_file = open(fnameh, "w")
     text_file.write(soup1.prettify())
     text_file.close()    
-    fnameh='pangolin'+str(i)+'.html'
+    fnameh='pangolin'+'.html'
     upload_file(fnameh,'/'+fnameh) 
 
 
@@ -1960,9 +1980,9 @@ def pangolin():
     print("Extracted in ",pangolin_fail+1,"attempts")
     
 
-  except:
+  except Exception as Exxx:
     pangolin_fail=pangolin_fail+1
-    print('Failed ',pangolin_fail,' times')
+    print('Failed ',pangolin_fail,' times', Exxx)
     try:
       initialize()
       
@@ -2090,7 +2110,7 @@ def All_Crypto():
   #All_websites = pd.DataFrame(columns = ['Pool', 'TVL','APR','source'])
   test_op={'nervefi':0,'adamant':0,'mirror':0,'convex':0,'raydium':0,'balancer':0,'ubeswap':0,'traderjoe':0,'pancake':0,'sushi_nokashi_farm':0,'coingecko':0,'pangolin':0,'alpaca':0}
 
-
+  
   try:
     print('Nerve_Fi Try 1')
     Nerve_df=nerve_fi()
@@ -2249,7 +2269,7 @@ def All_Crypto():
         test_op['sushi_nokashi_farm']=len(Sushi_nokashi_farm_df)        
       except:
         print('Failed to Extract sushi_nokashi_farm')    
-
+  
   try:
     print('coingecko Try 1')
     Coingecko_df=coingecko()
@@ -2320,7 +2340,7 @@ def All_Crypto():
         test_op['balancer']=len(Balancer_df)
       except:
         print('Failed to Extract balancer')         
-
+    
   try:
     print('balancer_eth Try 1')
     Balancer_eth_df=balancer_eth()
@@ -2354,7 +2374,7 @@ def All_Crypto():
         test_op['balancer']=len(Balancer_arb_df)
       except:
         print('Failed to Extract balancer')         
-        
+     
         
     
   return test_op
