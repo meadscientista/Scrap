@@ -1314,6 +1314,7 @@ def ubeswap():
     web_data=soup1
 
     main_list=web_data.find_all( "div" , class_='sc-cTkOCJ gAvgdh')
+    print(len(main_list))
     main_dict=[]
     for i in main_list:
         roww=i
@@ -1593,11 +1594,11 @@ def traderjoe():
   url="https://traderjoexyz.com/#/farm"
   import time
   global traderjoe_fail
-  
+  main_dict=[]
   try:
     #chrome_options = webdriver.ChromeOptions() 
     chrome_options.add_argument("--start-maximized")
-    main_dict=[]
+    
     chrome_options.add_argument('--no-sandbox') 
     chrome_options.add_argument('--disable-dev-shm-usage') 
     driver=webdriver.Chrome(executable_path=os.getenv('CHROME_EXECUTABLE_PATH'), options=chrome_options)
