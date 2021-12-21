@@ -120,7 +120,7 @@ def initialize():
   driver = webdriver.Chrome('chromedriver',chrome_options=chrome_options)
 
 TOKEN = "PA7Cl2jA9zcAAAAAAAAAAUfSfSNFhb8Lt6zhstP9DqSzkdg8aIEixjZ0o5K62lyO"
-#TOKEN= "D9kbx5Cwjw0AAAAAAAAAAa7JeHpbCvlVs60FIOmrNFRRQ5_CjsoHqQ5QMJV0VrIr"
+TOKEN= "D9kbx5Cwjw0AAAAAAAAAAa7JeHpbCvlVs60FIOmrNFRRQ5_CjsoHqQ5QMJV0VrIr"
 
 def connect_to_dropbox():
   try:
@@ -1275,9 +1275,9 @@ def ubeswap():
   url="https://app.ubeswap.org/#/farm"
   import time
   global ubeswap_fail
-  chrome_options.add_argument("--start-maximized")
+  
   try:
-       
+    chrome_options.add_argument("--start-maximized")
     chrome_options.add_argument('--no-sandbox') 
     chrome_options.add_argument('--disable-dev-shm-usage') 
     driver=webdriver.Chrome(executable_path=os.getenv('CHROME_EXECUTABLE_PATH'), options=chrome_options)
@@ -1304,11 +1304,11 @@ def ubeswap():
 
     page1 = driver.execute_script('return document.body.innerHTML')
     soup1 = BeautifulSoup(''.join(page1), 'html.parser')
-    fnameh='ubeswap'+str(i)+'.html'
+    fnameh='ubeswap'+'.html'
     text_file = open(fnameh, "w")
     text_file.write(soup1.prettify())
     text_file.close()    
-    fnameh='ubeswap'+str(i)+'.html'
+    fnameh='ubeswap'+'.html'
     upload_file(fnameh,'/'+fnameh) 
 
     web_data=soup1
@@ -1344,9 +1344,9 @@ def ubeswap():
     print("Extracted in ",ubeswap_fail+1,"attempts")
     
 
-  except:
+  except Exception as Exx:
     ubeswap_fail=ubeswap_fail+1
-    print('Failed ',ubeswap_fail,' times')
+    print('Failed ',ubeswap_fail,' times', Exx)
     try:
       initialize()
       
@@ -1690,6 +1690,7 @@ def coingecko():
   try:
     
     #chrome_options = webdriver.ChromeOptions() 
+    print('In 1')
     main_dict=[]
     chrome_options.add_argument('--no-sandbox') 
     chrome_options.add_argument('--disable-dev-shm-usage') 
@@ -1703,7 +1704,9 @@ def coingecko():
 
 
     try:
+        print('In 2')
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight-1000);")
+        print('Scrolled to bottom')
         time.sleep(SCROLL_PAUSE_TIME)
         #="coin-tickers-tab.perpetualsButton"
         gts="//div[@data-target='coin-tickers-tab.perpetualsButton']"
@@ -1715,7 +1718,7 @@ def coingecko():
 
     page1 = driver.execute_script('return document.body.innerHTML')
     soup1 = BeautifulSoup(''.join(page1), 'html.parser')
-    fnameh='coingeko'+str(i)+'.html'
+    fnameh='coingecko'+'.html'
     text_file = open(fnameh, "w")
     text_file.write(soup1.prettify())
     text_file.close()    
@@ -1724,22 +1727,24 @@ def coingecko():
     
     
     web_data=soup1
-    main_list=web_data.find('div',class_='contract-table').find_all("tr")[1:]
-    #print(main_list)
-    for i in main_list:
-        record=[]
-        roww=i
-        rowws=str(roww)
-        record.append(roww.contents[1].contents[3].contents[0]) 
-        #print(roww)
-        record.append(roww.contents[3].contents[1].contents[0])
-        record.append(roww.contents[5].contents[0].strip())   
-        record.append(roww.contents[11].contents[0].strip())
-        record.append(roww.contents[15].contents[1].contents[0].strip())
-        
-        
-        main_dict.append(record) 
-
+    try:
+      
+        main_list=web_data.find('div',class_='contract-table').find_all("tr")[1:]
+        print(len(main_list))
+        for i in main_list:
+            record=[]
+            roww=i
+            rowws=str(roww)
+            record.append(roww.contents[1].contents[3].contents[0]) 
+            #print(roww)
+            record.append(roww.contents[3].contents[1].contents[0])
+            record.append(roww.contents[5].contents[0].strip())   
+            record.append(roww.contents[11].contents[0].strip())
+            record.append(roww.contents[15].contents[1].contents[0].strip())       
+            
+            main_dict.append(record) 
+    except:
+        pass
 
     df = pd.DataFrame(main_dict, columns = ['Exchange', 'Symbol','Price','Basis','Funding Rate'])
 
@@ -1860,9 +1865,9 @@ def pangolin():
   url="https://app.pangolin.exchange/#"
   import time
   global pangolin_fail
-  chrome_options.add_argument("--start-maximized")
+  
   try:
-    
+    chrome_options.add_argument("--start-maximized")
     chrome_options.add_argument('--no-sandbox') 
     chrome_options.add_argument('--disable-dev-shm-usage') 
     driver=webdriver.Chrome(executable_path=os.getenv('CHROME_EXECUTABLE_PATH'), options=chrome_options)
@@ -1910,11 +1915,11 @@ def pangolin():
     soup1 = BeautifulSoup(str(soup1).replace('class="sc-gzVnrw bhXWHA"></span>','class="sc-gzVnrw bhXWHA">'))
     soup1 = BeautifulSoup(str(soup1).replace('<span class="sc-gzVnrw bhXWHA"','</span><span class="sc-gzVnrw bhXWHA"'))
 
-    fnameh='pangolin'+str(i)+'.html'
+    fnameh='pangolin'+'.html'
     text_file = open(fnameh, "w")
     text_file.write(soup1.prettify())
     text_file.close()    
-    fnameh='pangolin'+str(i)+'.html'
+    fnameh='pangolin'+'.html'
     upload_file(fnameh,'/'+fnameh) 
 
 
@@ -2251,7 +2256,7 @@ def All_Crypto():
         test_op['sushi_nokashi_farm']=len(Sushi_nokashi_farm_df)        
       except:
         print('Failed to Extract sushi_nokashi_farm')    
-
+  '''
   try:
     print('coingecko Try 1')
     Coingecko_df=coingecko()
@@ -2268,7 +2273,7 @@ def All_Crypto():
         test_op['coingecko']=len(Coingecko_df)        
       except:
         print('Failed to Extract coingecko')    
-  '''
+
   try:
     print('pangolin Try 1')
     Pangolin_df=pangolin()
