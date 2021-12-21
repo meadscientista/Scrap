@@ -1640,9 +1640,9 @@ def traderjoe():
       main_list=web_data.find_all("div",class_= "sc-yZwTr ftPlyn")
       print(len(main_list), i)
       #print(len(main_list))
-      for i in main_list:
+      for k in main_list:
         record=[]
-        roww=i
+        roww=k
         rowws=str(roww)
         try:                
             record.append(roww.find('div',class_='sc-bZQynM jmMmRU css-r99fas').contents[0]) 
@@ -1651,12 +1651,12 @@ def traderjoe():
             record.append(roww.find_all('div',class_='sc-bZQynM dkmKkO css-1ecm0so')[1].contents[0])   
             record.append(roww.find_all('div',class_='sc-bZQynM dkmKkO css-1ecm0so')[2].contents[0])
             main_dict.append(record) 
-            print(i,main_dict)
+            print('\n',i,main_dict,'\n')
         except Exception as Exx:
             print(Exx)
             pass
         
-    print('Full',main_dict)
+    print('\n Full',main_dict)
     df = pd.DataFrame(main_dict, columns = ['Pool Name', 'Pool Weight','Liquidity','APR'])
     df=df.drop_duplicates(subset=['Pool Name'])
     df.to_csv('Trader Joe.csv')
