@@ -1282,7 +1282,7 @@ def ubeswap():
     chrome_options.add_argument('--disable-dev-shm-usage') 
     driver=webdriver.Chrome(executable_path=os.getenv('CHROME_EXECUTABLE_PATH'), options=chrome_options)
 
-    SCROLL_PAUSE_TIME = 3
+    SCROLL_PAUSE_TIME = 4
 
 
     WebDriverWait(driver, SCROLL_PAUSE_TIME)
