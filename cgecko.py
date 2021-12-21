@@ -1727,21 +1727,24 @@ def coingecko():
     
     
     web_data=soup1
-    main_list=web_data.find('div',class_='contract-table').find_all("tr")[1:]
-    print(len(main_list))
-    for i in main_list:
-        record=[]
-        roww=i
-        rowws=str(roww)
-        record.append(roww.contents[1].contents[3].contents[0]) 
-        #print(roww)
-        record.append(roww.contents[3].contents[1].contents[0])
-        record.append(roww.contents[5].contents[0].strip())   
-        record.append(roww.contents[11].contents[0].strip())
-        record.append(roww.contents[15].contents[1].contents[0].strip())       
-        
-        main_dict.append(record) 
-
+    try:
+      
+        main_list=web_data.find('div',class_='contract-table').find_all("tr")[1:]
+        print(len(main_list))
+        for i in main_list:
+            record=[]
+            roww=i
+            rowws=str(roww)
+            record.append(roww.contents[1].contents[3].contents[0]) 
+            #print(roww)
+            record.append(roww.contents[3].contents[1].contents[0])
+            record.append(roww.contents[5].contents[0].strip())   
+            record.append(roww.contents[11].contents[0].strip())
+            record.append(roww.contents[15].contents[1].contents[0].strip())       
+            
+            main_dict.append(record) 
+    except:
+        pass
 
     df = pd.DataFrame(main_dict, columns = ['Exchange', 'Symbol','Price','Basis','Funding Rate'])
 
