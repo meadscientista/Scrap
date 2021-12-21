@@ -1695,11 +1695,11 @@ def coingecko():
     chrome_options.add_argument('--no-sandbox') 
     chrome_options.add_argument('--disable-dev-shm-usage') 
     driver=webdriver.Chrome(executable_path=os.getenv('CHROME_EXECUTABLE_PATH'), options=chrome_options)
-    SCROLL_PAUSE_TIME = 2
+    SCROLL_PAUSE_TIME = 5
     driver.maximize_window()
     WebDriverWait(driver, SCROLL_PAUSE_TIME)
     driver.get(url)
-    time.sleep(2)
+    time.sleep(6)
     last_height = 0    
 
 
@@ -1778,6 +1778,7 @@ def coingecko():
 
 
   return df
+
 
 def sushi_nokashi_farm():
   url = "https://app.sushi.com/farm"
