@@ -1312,8 +1312,8 @@ def ubeswap():
     upload_file(fnameh,'/'+fnameh) 
 
     web_data=soup1
-
-    main_list=web_data.find_all( "div" , class_='sc-cTkOCJ gAvgdh')
+    ###sc-ihsTQM hnqjkl     sc-cTkOCJ gAvgdh
+    main_list=web_data.find_all( "div" , class_='sc-ihsTQM hnqjkl')
     print(len(main_list))
     main_dict=[]
     for i in main_list:
