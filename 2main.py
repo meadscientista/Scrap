@@ -1318,18 +1318,24 @@ def ubeswap():
     for i in main_list:
         roww=i
         record=[]
+
         try:
-          record.append(roww.find('div',class_='sc-cxFLGX cNbTaJ css-1t1fovp').contents[0])
+          #sc-lmoMya fAYcvI css-1t1fovp     sc-cxFLGX cNbTaJ css-1t1fovp  
+          record.append(roww.find('div',class_='sc-lmoMya fAYcvI css-1t1fovp').contents[0])
+        except:
+          #print(roww.find('div',class_='sc-cxFLGX cNbTaJ css-1t1fovp'))
+          record.append('')
+        try:
+          #sc-cxFLGX cNbTaJ css-8626y4  sc-lmoMya cDMuHr apr css-zhpkf8
+          record.append(roww.find_all('div',class_='sc-lmoMya fAYcvI css-8626y4')[2].contents[0])
         except:
           record.append('')
         try:
-          record.append(roww.find_all('div',class_='sc-cxFLGX cNbTaJ css-8626y4')[2].contents[0])
+          #sc-lmoMya fAYcvI css-8626y4  sc-cxFLGX gDnfWa apr css-zhpkf8
+          record.append(roww.find('div',class_='sc-lmoMya fAYcvI css-8626y4').contents[1])
         except:
-          record.append('')
-        try:
-          record.append(roww.find('div',class_='sc-cxFLGX gDnfWa apr css-zhpkf8').contents[0])
-        except:
-          record.append('')
+          record.append('')        
+        
         main_dict.append(record) 
     df = pd.DataFrame(main_dict, columns = ['Pool', 'TVL','APR'])
     #print("Extracted in ",nerve_fail+1,"attempts")
@@ -1498,7 +1504,8 @@ def pancake():
     print('HHTML Made')
     upload_file('PancakeSoup.html','/PancakeSoup.html')
     web_data=soup1
-    main_list=web_data.find_all("tr",class_= "sc-iNhCjk fZwsUA")
+    #sc-kNnZrs lEjHl    sc-iNhCjk fZwsUA
+    main_list=web_data.find_all("tr",class_= "sc-kNnZrs lEjHl")
     print(len(main_list),'Pancake Size')
     main_dict=[]
     import re
@@ -1626,8 +1633,8 @@ def traderjoe():
       
       
       web_data=soup1
-      #sc-gNJABI jgByc
-      main_list=web_data.find_all("div",class_= "sc-kNBZmU fcuCFn")
+      #sc-gNJABI jgByc   sc-kNBZmU fcuCFn   
+      main_list=web_data.find_all("div",class_= "sc-yZwTr ftPlyn")
       print(len(main_list))
       #print(len(main_list))
       for i in main_list:
@@ -2202,7 +2209,7 @@ def All_Crypto():
         test_op['ubeswap']=len(Ubeswap_df)
       except:
         print('Failed to Extract ubeswap')    
-  '''
+  
   try:
     print('traderjoe Try 1')
     Traderjoe_df=traderjoe()
@@ -2239,7 +2246,7 @@ def All_Crypto():
         test_op['pancake']=len(Pancake_df)        
       except:
         print('Failed to Extract pancake')    
-  
+  '''
   try:
     print('sushi_nokashi_farm Try 1')
     Sushi_nokashi_farm_df=sushi_nokashi_farm()
