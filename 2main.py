@@ -1313,31 +1313,33 @@ def ubeswap():
 
     web_data=soup1
     ###sc-ihsTQM hnqjkl     sc-cTkOCJ gAvgdh
+
     main_list=web_data.find_all( "div" , class_='sc-ihsTQM hnqjkl')
-    print(len(main_list))
     main_dict=[]
     for i in main_list:
         roww=i
         record=[]
-
+        #print(i,'\n')
+        #print('_____________________\n')
         try:
           #sc-lmoMya fAYcvI css-1t1fovp     sc-cxFLGX cNbTaJ css-1t1fovp  
-          record.append(roww.find('div',class_='sc-lmoMya fAYcvI css-1t1fovp').contents[0])
+          record.append(roww.find('div',class_='sc-lmoMya fAYcvI css-1t1fovp').contents[0].strip())
         except:
           #print(roww.find('div',class_='sc-cxFLGX cNbTaJ css-1t1fovp'))
           record.append('')
         try:
           #sc-cxFLGX cNbTaJ css-8626y4  sc-lmoMya cDMuHr apr css-zhpkf8
-          record.append(roww.find_all('div',class_='sc-lmoMya fAYcvI css-8626y4')[2].contents[0])
+          record.append(roww.find_all('div',class_='sc-lmoMya fAYcvI css-8626y4')[2].contents[0].strip())
         except:
           record.append('')
         try:
           #sc-lmoMya fAYcvI css-8626y4  sc-cxFLGX gDnfWa apr css-zhpkf8
-          record.append(roww.find('div',class_='sc-lmoMya fAYcvI css-8626y4').contents[1])
+          record.append(roww.find('div',class_='sc-lmoMya fAYcvI css-8626y4').contents[1].contents[0].strip())
         except:
-          record.append('')        
-        
-        main_dict.append(record) 
+          record.append('')
+        print(len(record[0]))
+        if(len(record[0])>1):
+            main_dict.append(record) 
     df = pd.DataFrame(main_dict, columns = ['Pool', 'TVL','APR'])
     #print("Extracted in ",nerve_fail+1,"attempts")
     print("Extracted ",len(df)," records")
@@ -1636,8 +1638,8 @@ def traderjoe():
       
       
       web_data=soup1
-      #sc-gNJABI jgByc   sc-kNBZmU fcuCFn   
-      main_list=web_data.find_all("div",class_= "sc-yZwTr ftPlyn")
+      #sc-gNJABI jgByc   sc-kNBZmU fcuCFn       sc-kNBZmU hwUZuk
+      main_list=web_data.find_all("div",class_= "sc-kNBZmU hwUZuk")
       print(len(main_list), i)
       #print(len(main_list))
       for k in main_list:
@@ -1647,11 +1649,11 @@ def traderjoe():
         try:                
             record.append(roww.find('div',class_='sc-bZQynM jmMmRU css-r99fas').contents[0]) 
             #print(roww)
-            record.append(roww.find_all('div',class_='sc-bZQynM dkmKkO css-1ecm0so')[0].contents[0])
-            record.append(roww.find_all('div',class_='sc-bZQynM dkmKkO css-1ecm0so')[1].contents[0])   
-            record.append(roww.find_all('div',class_='sc-bZQynM dkmKkO css-1ecm0so')[2].contents[0])
+            record.append(roww.find_all('div',class_='sc-bZQynM dkmKkO css-1ecm0so')[0].contents[0].strip())
+            record.append(roww.find_all('div',class_='sc-bZQynM dkmKkO css-1ecm0so')[1].contents[0].strip())   
+            record.append(roww.find_all('div',class_='sc-bZQynM dkmKkO css-1ecm0so')[2].contents[0].strip())
             main_dict.append(record) 
-            print('\n',i,main_dict,'\n')
+            print('\n',record,'\n')
         except Exception as Exx:
             print(Exx)
             pass
