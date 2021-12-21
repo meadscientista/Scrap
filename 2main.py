@@ -120,7 +120,7 @@ def initialize():
   driver = webdriver.Chrome('chromedriver',chrome_options=chrome_options)
 
 TOKEN = "PA7Cl2jA9zcAAAAAAAAAAUfSfSNFhb8Lt6zhstP9DqSzkdg8aIEixjZ0o5K62lyO"
-TOKEN= "D9kbx5Cwjw0AAAAAAAAAAa7JeHpbCvlVs60FIOmrNFRRQ5_CjsoHqQ5QMJV0VrIr"
+#TOKEN= "D9kbx5Cwjw0AAAAAAAAAAa7JeHpbCvlVs60FIOmrNFRRQ5_CjsoHqQ5QMJV0VrIr"
 
 def connect_to_dropbox():
   try:
@@ -2251,7 +2251,7 @@ def All_Crypto():
         test_op['sushi_nokashi_farm']=len(Sushi_nokashi_farm_df)        
       except:
         print('Failed to Extract sushi_nokashi_farm')    
-  '''
+
   try:
     print('coingecko Try 1')
     Coingecko_df=coingecko()
@@ -2268,7 +2268,7 @@ def All_Crypto():
         test_op['coingecko']=len(Coingecko_df)        
       except:
         print('Failed to Extract coingecko')    
-
+  '''
   try:
     print('pangolin Try 1')
     Pangolin_df=pangolin()
