@@ -2101,6 +2101,7 @@ def All_Crypto():
 
   try:
     print('coingecko Try 1')
+    initialize()
     Coingecko_df=coingecko()
     #print(Coingecko_df)
     test_op['coingecko']=len(Coingecko_df)
