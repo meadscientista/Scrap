@@ -120,7 +120,7 @@ def initialize():
   driver = webdriver.Chrome('chromedriver',chrome_options=chrome_options)
 
 TOKEN = "PA7Cl2jA9zcAAAAAAAAAAUfSfSNFhb8Lt6zhstP9DqSzkdg8aIEixjZ0o5K62lyO"
-#TOKEN= "D9kbx5Cwjw0AAAAAAAAAAa7JeHpbCvlVs60FIOmrNFRRQ5_CjsoHqQ5QMJV0VrIr"
+TOKEN= "D9kbx5Cwjw0AAAAAAAAAAa7JeHpbCvlVs60FIOmrNFRRQ5_CjsoHqQ5QMJV0VrIr"
 
 def connect_to_dropbox():
   try:
@@ -1690,6 +1690,7 @@ def coingecko():
   try:
     
     #chrome_options = webdriver.ChromeOptions() 
+    print('In 1')
     main_dict=[]
     chrome_options.add_argument('--no-sandbox') 
     chrome_options.add_argument('--disable-dev-shm-usage') 
@@ -1703,7 +1704,9 @@ def coingecko():
 
 
     try:
+        print('In 2')
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight-1000);")
+        print('Scrolled to bottom')
         time.sleep(SCROLL_PAUSE_TIME)
         #="coin-tickers-tab.perpetualsButton"
         gts="//div[@data-target='coin-tickers-tab.perpetualsButton']"
@@ -1725,7 +1728,7 @@ def coingecko():
     
     web_data=soup1
     main_list=web_data.find('div',class_='contract-table').find_all("tr")[1:]
-    #print(main_list)
+    print(len(main_list))
     for i in main_list:
         record=[]
         roww=i
@@ -1735,8 +1738,7 @@ def coingecko():
         record.append(roww.contents[3].contents[1].contents[0])
         record.append(roww.contents[5].contents[0].strip())   
         record.append(roww.contents[11].contents[0].strip())
-        record.append(roww.contents[15].contents[1].contents[0].strip())
-        
+        record.append(roww.contents[15].contents[1].contents[0].strip())       
         
         main_dict.append(record) 
 
