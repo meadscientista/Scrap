@@ -1526,7 +1526,8 @@ def pancake():
             except:
                 record.append('')
             try:
-                record.append(roww.find('div', class_="sc-jSFjdj sc-gKAaRy sc-eSRwjH kJmatq togOu lnhkkx").contents[0].strip())
+                #sc-jSFjdj sc-gKAaRy sc-khIimk kJmatq togOu gNMCgZ      sc-jSFjdj sc-gKAaRy sc-eSRwjH kJmatq togOu lnhkkx
+                record.append(roww.find('div', class_="sc-jSFjdj sc-gKAaRy sc-khIimk kJmatq togOu gNMCgZ").contents[0].strip())
             except:
                 record.append('')       
             try:
@@ -1534,7 +1535,8 @@ def pancake():
             except:
                 record.append('')
             try:
-                record.append(roww.find('div',class_='sc-cBsszO eKkVhu').contents[0].strip())
+                ##sc-eByPHW nwnCv       sc-cBsszO eKkVhu
+                record.append(roww.find('div',class_='sc-eByPHW nwnCv').contents[0].strip())
             except:
                 record.append('')  
 
@@ -1635,7 +1637,7 @@ def traderjoe():
       web_data=soup1
       #sc-gNJABI jgByc   sc-kNBZmU fcuCFn   
       main_list=web_data.find_all("div",class_= "sc-yZwTr ftPlyn")
-      print(len(main_list))
+      print(len(main_list), i)
       #print(len(main_list))
       for i in main_list:
         record=[]
@@ -1648,11 +1650,12 @@ def traderjoe():
             record.append(roww.find_all('div',class_='sc-bZQynM dkmKkO css-1ecm0so')[1].contents[0])   
             record.append(roww.find_all('div',class_='sc-bZQynM dkmKkO css-1ecm0so')[2].contents[0])
             main_dict.append(record) 
+            print(i,main_dict)
         except Exception as Exx:
             print(Exx)
             pass
         
-
+    print('Full',main_dict)
     df = pd.DataFrame(main_dict, columns = ['Pool Name', 'Pool Weight','Liquidity','APR'])
     df=df.drop_duplicates(subset=['Pool Name'])
     df.to_csv('Trader Joe.csv')
