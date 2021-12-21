@@ -1718,7 +1718,7 @@ def coingecko():
 
     page1 = driver.execute_script('return document.body.innerHTML')
     soup1 = BeautifulSoup(''.join(page1), 'html.parser')
-    fnameh='coingeko'+str(i)+'.html'
+    fnameh='coingeko'+'.html'
     text_file = open(fnameh, "w")
     text_file.write(soup1.prettify())
     text_file.close()    
