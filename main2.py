@@ -1022,6 +1022,7 @@ def balancer_eth():
         #print('In')
         #element = driver.find_element_by_xpath("//div[@class='bal-icon inline-block ml-2']")
         time.sleep(SCROLL_PAUSE_TIME)
+        driver.execute_script("window.scrollTo(0, document.body.scrollHeight-1000);")
         element = driver.find_element_by_xpath("//div[@class='bal-table-pagination-btn']")    
         element.click()
         time.sleep(3)    
@@ -1031,7 +1032,7 @@ def balancer_eth():
         pass
 
     while True:
-      driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+      driver.execute_script("window.scrollTo(0, document.body.scrollHeight-1000);")
 
         # Wait to load page
       time.sleep(SCROLL_PAUSE_TIME)
@@ -1132,9 +1133,9 @@ def balancer_eth():
   return df
 
 def balancer_arb():
-  print("Started Balancer_eth")
+  print("Started Balancer_arb")
   opname='balancer_arb'+str(date_time_now)+'.csv'
-  url="https://app.balancer.fi/#/"
+  url="https://arbitrum.balancer.fi/#/"
   import time
   global balancer_fail
   chrome_options.add_argument("--start-maximized")
@@ -1333,9 +1334,10 @@ def ubeswap():
         except:
           record.append('')
         try:
-          #sc-lmoMya fAYcvI css-8626y4  sc-cxFLGX gDnfWa apr css-zhpkf8
-          record.append(roww.find('div',class_='sc-lmoMya fAYcvI css-8626y4').contents[1].contents[0].strip())
+          #sc-lmoMya fAYcvI css-8626y4  sc-cxFLGX gDnfWa apr css-zhpkf8     sc-lmoMya cDMuHr apr css-zhpkf8
+          record.append(roww.find('div',class_='sc-lmoMya cDMuHr apr css-zhpkf8').contents[0].strip())
         except:
+          #print(roww.find('div',class_='sc-lmoMya fAYcvI css-8626y4'))
           record.append('')
         print(len(record[0]))
         if(len(record[0])>1):
@@ -1505,7 +1507,7 @@ def pancake():
     text_file.close()     
     
     print('HHTML Made')
-    upload_file('PancakeSoup.html','/PancakeSoup.html')
+    #upload_file('PancakeSoup.html','/PancakeSoup.html')
     web_data=soup1
     #sc-kNnZrs lEjHl    sc-iNhCjk fZwsUA
     main_list=web_data.find_all("tr",class_= "sc-kNnZrs lEjHl")
@@ -1632,7 +1634,7 @@ def traderjoe():
       text_file.write(soup1.prettify())
       text_file.close()    
       fnameh='joesoup'+str(i)+'.html'
-      upload_file(fnameh,'/'+fnameh) 
+      #upload_file(fnameh,'/'+fnameh) 
       print('HTML Made')
 
       
@@ -1736,7 +1738,7 @@ def coingecko():
     text_file.write(soup1.prettify())
     text_file.close()    
     fnameh='coingecko'+'.html'
-    upload_file(fnameh,'/'+fnameh) 
+    #upload_file(fnameh,'/'+fnameh) 
     
     
     web_data=soup1
@@ -1933,7 +1935,7 @@ def pangolin():
     text_file.write(soup1.prettify())
     text_file.close()    
     fnameh='pangolin'+'.html'
-    upload_file(fnameh,'/'+fnameh) 
+    #upload_file(fnameh,'/'+fnameh) 
 
 
     web_data=soup1
@@ -2048,7 +2050,7 @@ def alpaca():
       text_file.write(soup1.prettify())
       text_file.close()    
       fnameh='alpaca'+str(i)+'.html'
-      upload_file(fnameh,'/'+fnameh) 
+      #upload_file(fnameh,'/'+fnameh) 
 
 
       web_data=soup1
@@ -2108,7 +2110,7 @@ def alpaca():
 
 def All_Crypto():
   #All_websites = pd.DataFrame(columns = ['Pool', 'TVL','APR','source'])
-  test_op={'nervefi':0,'adamant':0,'mirror':0,'convex':0,'raydium':0,'balancer':0,'ubeswap':0,'traderjoe':0,'pancake':0,'sushi_nokashi_farm':0,'coingecko':0,'pangolin':0,'alpaca':0}
+  test_op={'nervefi':0,'adamant':0,'mirror':0,'convex':0,'raydium':0,'balancer':0,'ubeswap':0,'traderjoe':0,'pancake':0,'sushi_nokashi_farm':0,'pangolin':0,'alpaca':0}
 
   
   try:
@@ -2198,7 +2200,7 @@ def All_Crypto():
       except:
         print('Failed to Extract raydium')    
      
-
+  
   try:
     print('ubeswap Try 1')
     Ubeswap_df=ubeswap()
@@ -2345,7 +2347,7 @@ def All_Crypto():
     print('balancer_eth Try 1')
     Balancer_eth_df=balancer_eth()
     #print(Balancer_df)
-    test_op['balancer']=len(Balancer_eth_df_df)
+    test_op['balancer']=len(Balancer_eth_df)
   except:
     try:
       initialize()
@@ -2357,7 +2359,7 @@ def All_Crypto():
         test_op['balancer']=len(Balancer_eth_df)
       except:
         print('Failed to Extract balancer')         
-
+  
   try:
     print('balancer_arb Try 1')
     Balancer_arb_df=balancer_arb()
@@ -2374,7 +2376,7 @@ def All_Crypto():
         test_op['balancer']=len(Balancer_arb_df)
       except:
         print('Failed to Extract balancer')         
-     
+    
         
     
   return test_op
